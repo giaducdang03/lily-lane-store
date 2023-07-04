@@ -59,9 +59,13 @@ public class AuthenFilter implements Filter {
         NON_AUTHEN_RESOURCES.add("MainController");
         NON_AUTHEN_RESOURCES.add("LoginController");
         NON_AUTHEN_RESOURCES.add("LoginGoogleController");
+        NON_AUTHEN_RESOURCES.add("testAjax.jsp");
+        NON_AUTHEN_RESOURCES.add("AjaxController");
+
 
         NON_AUTHEN_RESOURCES.add("shopping.html");
         NON_AUTHEN_RESOURCES.add("shopping.jsp");
+        NON_AUTHEN_RESOURCES.add("viewCart.jsp");
         NON_AUTHEN_RESOURCES.add("notFound.html");
 
     }

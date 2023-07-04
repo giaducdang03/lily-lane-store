@@ -21,6 +21,7 @@
     <!-- boostrap -->
     <link rel="stylesheet" href="./assets/css/bootstrap.min/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/font/css/all.css">
+    <link rel="stylesheet" href="./assets/css/toastMessage.css">
     <link rel="stylesheet" href="./assets/css/styleadmin.css">
 
 </head>
@@ -28,6 +29,9 @@
 <body>
     <c:if test="${sessionScope.LOGIN_USER == null}">
         <c:redirect url="MainController"></c:redirect>
+    </c:if>
+    <c:if test="${requestScope.MESSAGE != null}">
+        <c:import url="toast.jsp"></c:import>
     </c:if>
     <div class="container-fluid header_main">
         <div class="container-fluid navbar-content">
@@ -141,13 +145,19 @@
                                                     <input type="hidden" name="search" value="${param.search}"/>
                                                     <button><i class="fa-solid fa-pen-to-square"></i></button>
                                                 </div>
+                                            </form>
                                                 <div class="delete">
-                                                    <input type="hidden" name="action" value="Delete">
-                                                    <button><i class="fa-solid fa-trash-can"></i></button>
+                                                    <form action="MainController">
+                                                        <input type="hidden" name="userID" value="${user.userID}">
+                                                        <input type="hidden" name="search" value="${param.search}"/>
+                                                        <input type="hidden" name="action" value="Delete">
+                                                        <button><i class="fa-solid fa-trash-can"></i></button>
+                                                    </form>
+                                                    
                                                 </div>
                                             </td>
                                         </tr>
-                                    </form>
+                                    
                                 </c:forEach>
                             </c:if>
                         </c:if>   
@@ -168,6 +178,14 @@
     <script src="./assets/js/bootstrap/jquery.min.js"></script>
     <script src="./assets/js/bootstrap/popper.min.js"></script>
     <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.toast').toast({delay: 5000});
+            $('.toast').toast('show');
+        });
+    </script>
+
 </body>
 
 </html>

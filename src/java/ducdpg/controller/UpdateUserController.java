@@ -35,26 +35,30 @@ public class UpdateUserController extends HttpServlet {
             String userID = request.getParameter("userID");
             String fullName = request.getParameter("fullName");
             String roleID = request.getParameter("roleID").toUpperCase();
-            HttpSession session = request.getSession();
-            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-            UserDAO dao = new UserDAO();
-            UserDTO user = new UserDTO(userID, fullName, roleID);
-            boolean check = dao.update(user);
-            if (check) {
-                url = SUCCESS;
-                MessageDTO message = new MessageDTO("success", "Manager", IconMessage.SUCCESS, "Updated successfully.");
+            if (!roleID.equals("AD") && !roleID.equals("US")){
+                System.out.println(roleID);
+                MessageDTO message = new MessageDTO("error", "Manager", IconMessage.ERROR, "Role " + roleID + " does not exist.");
                 request.setAttribute("MESSAGE", message);
-                if (loginUser.getUserID().equals(userID)) {
-                    loginUser.setFullName(fullName);
-                    loginUser.setRoleID(roleID);
-                    session.setAttribute("LOGIN_USER", loginUser);
-                    message = new MessageDTO("success", "Manager", IconMessage.SUCCESS, "Updated successfully.");
-                    request.setAttribute("MESSAGE", message);
-                    url = SUCCESS;
-                }
             } else {
-                MessageDTO message = new MessageDTO("error", "Manager", IconMessage.ERROR, "Can't update user. Try again!");
-                request.setAttribute("MESSAGE", message);
+                HttpSession session = request.getSession();
+                UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                UserDAO dao = new UserDAO();
+                UserDTO user = new UserDTO(userID, fullName, roleID);
+                boolean check = dao.update(user);
+                if (check) {
+                    if (loginUser.getUserID().equals(userID)) {
+                        loginUser.setFullName(fullName);
+                        loginUser.setRoleID(roleID);
+                        session.setAttribute("LOGIN_USER", loginUser);
+                        url = SUCCESS;
+                    }
+                    url = SUCCESS;
+                    MessageDTO message = new MessageDTO("success", "Manager", IconMessage.SUCCESS, "Updated successfully.");
+                    request.setAttribute("MESSAGE", message);
+                } else {
+                    MessageDTO message = new MessageDTO("error", "Manager", IconMessage.ERROR, "Can't update user. Try again!");
+                    request.setAttribute("MESSAGE", message);
+                }
             }
         } catch (Exception e){
             log("Error at UpdateUserController: " + e.toString());

@@ -23,6 +23,8 @@ public class MainController extends HttpServlet {
     private static final String HOME_CONTROLLER = "HomeController";
     private static final String LOGIN = "Login";
     private static final String LOGIN_CONTROLLER = "LoginController";
+    private static final String CREATE_USER = "Sign Up";
+    private static final String CREATE_USER_CONTROLLER = "CreateUserController";
     private static final String LOGOUT = "Logout";
     private static final String LOGOUT_CONTROLLER = "LogoutController";
     private static final String SEARCH = "Search";
@@ -31,6 +33,8 @@ public class MainController extends HttpServlet {
     private static final String UPDATE_USER_CONTROLLER = "UpdateUserController";
     private static final String DELETE_USER = "Delete";
     private static final String DELETE_USER_CONTROLLER = "DeleteUserController";
+    private static final String ADD_TO_CART = "ADD TO CART";
+    private static final String ADD_TO_CART_CONTROLLER = "AddToCartController";
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -45,6 +49,9 @@ public class MainController extends HttpServlet {
             else if (LOGIN.equals(action)) {
                 url = LOGIN_CONTROLLER;
             } 
+            else if (CREATE_USER.equals(action)) {
+                url = CREATE_USER_CONTROLLER;
+            } 
             else if (LOGOUT.equals(action)) {
                 url = LOGOUT_CONTROLLER;
             } 
@@ -56,6 +63,9 @@ public class MainController extends HttpServlet {
             }
             else if (DELETE_USER.equals(action)) {
                 url = DELETE_USER_CONTROLLER;
+            }
+            else if (ADD_TO_CART.equals(action)) {
+                url = ADD_TO_CART_CONTROLLER;
             }
             else {
                 url = NOT_FOUND;

@@ -20,7 +20,7 @@
     <div class="container-fluid navbar-content">
         <nav class="navbar navbar-expand-lg">
             <div class="logo col-md-3">
-                <a class="navbar-brand" href="#"><img src="./assets/img/logo/lily-lane-logo-web.png" alt
+                <a class="navbar-brand" href="MainController"><img src="./assets/img/logo/lily-lane-logo-web.png" alt
                                                       width="100px"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -31,7 +31,7 @@
             <div class="service col-md-6 collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class=" nav-item ">
-                        <a class="nav-link active" href="#">Home</span></a>
+                        <a class="nav-link active" href="MainController">Home</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Flower Gallery</a>
@@ -50,7 +50,7 @@
             <div class="right-nav nav-item col-md-3">
                 <ul class="col-md-5 cart navbar-nav mr-auto">
                     <li class="nav-item" style="padding: 0;">
-                        <a class="nav-link" href="#" style="font-size: 20px;"><i
+                        <a class="nav-link" href="viewCart.jsp" style="font-size: 20px;"><i
                                 class="fa-solid fa-cart-shopping"></i></a>
                     </li>
                 </ul>

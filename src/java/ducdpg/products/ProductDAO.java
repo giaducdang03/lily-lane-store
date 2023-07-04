@@ -19,6 +19,8 @@ import java.util.List;
  */
 public class ProductDAO {
     private static final String GET_LIST_PRODUCT = "SELECT productID, name, price, quantity, img FROM tblProducts";
+    private static final String GET_BUY_PRODUCT = "SELECT productID, name, price, quantity, img FROM tblProducts WHERE productID = ?";
+
 
     public List<ProductDTO> getListProduct() throws SQLException {
         List<ProductDTO> product = new ArrayList<>();
@@ -39,6 +41,34 @@ public class ProductDAO {
                     product.add(new ProductDTO(ID, name, price, quantity, img));
                 }
 //                product.add(new ProductDTO(ID, name, price, quantity, img));
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if (rs != null) rs.close();
+            if (ptm != null) ptm.close();
+            if (conn != null) conn.close();
+        }
+        return product;
+    }
+
+    public ProductDTO getBuyProduct(String productID, int quantity) throws SQLException {
+        ProductDTO product = null;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                ptm = conn.prepareStatement(GET_BUY_PRODUCT);
+                ptm.setString(1, productID);
+                rs = ptm.executeQuery();
+                if (rs.next()){
+                    String name = rs.getString("name");
+                    int price = rs.getInt("price");
+                    String img = rs.getString("img");
+                    product = new ProductDTO(productID, name, price, quantity, img);
+                }
             }
         } catch (Exception e){
             e.printStackTrace();

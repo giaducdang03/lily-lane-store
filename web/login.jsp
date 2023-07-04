@@ -12,7 +12,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login Flower</title>
+        <title>Login Page | Lily Lane</title>
         <!-- Google font -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,13 +21,15 @@
         <!-- boostrap -->
         <link rel="stylesheet" href="assets/css/bootstrap.min/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/font/css/all.css">
-        <link rel="stylesheet" href="./assets/css/stylehome.css">
+        <link rel="stylesheet" href="./assets/css/styleheader.css">
+        <link rel="stylesheet" href="./assets/css/stylefooter.css">
+        <link rel="stylesheet" href="./assets/css/toastMessage.css">
         <link rel="stylesheet" href="./assets/css/stylelogin.css">
     </head>
 
     <body onload="getCookiedata()">
         <c:import url="header.jsp"></c:import>
-       
+        
         <div class="background-img"></div>
         <div class="outline">
             <div class="background-url" id="container">
@@ -46,14 +48,12 @@
                                     <input type="password" name="password" required="" id="password-text" />
                                     <span>Password</span>
                                 </div>
-                                <!-- <span class="eye">
-                                    <i id="showPassword" class="fa-solid fa-eye"></i>
-                                </span> -->
                             </div>
                         </div>
                         <li class="login-function">
                             <span><input type="checkbox" onclick="saveInfo()">Remember Me</span>
                             <a href="#" id="forgot-pass" onclick="forgot_pass()">Forgot Password?</a>
+                            <p class="mess-error"><span>${requestScope.ERROR}</span></p>
                         </li>
 
                         <div class="login-success">
@@ -78,13 +78,14 @@
                     <div class="header">
                         <div>SIGN UP</div>
                     </div>
-                    <form action="MainController" id="register">
+                    <form id="register" action="MainController" method="POST">
                         <div class="login-type">
                             <div class="inputBox-signup">
                                 <div class="inputBox">
                                     <input type="text" name="userID" required=""/>
                                     <span>UserName</span>
                                 </div>
+                                <p class="mess-error">${requestScope.USER_ERROR.userIDError}</p>
                             </div>
 
                             <div class="inputBox-signup">
@@ -92,6 +93,7 @@
                                     <input type="text" name="fullName" required=""/>
                                     <span>FullName</span>
                                 </div>
+                                <p class="mess-error">${requestScope.USER_ERROR.fullNameError}</p>
                             </div>
 
                             <div class="inputBox-signup">
@@ -99,6 +101,7 @@
                                     <input type="email" name="email" required=""/>
                                     <span>Email</span>
                                 </div>
+                                <p class="mess-error">${requestScope.USER_ERROR.emailError}</p>
                             </div>
 
                             <div class="inputBox-signup">
@@ -108,6 +111,7 @@
                                         <span>Password</span>
                                     </div>
                                 </div>
+                                <p class="mess-error">${requestScope.USER_ERROR.passwordError}</p>
                             </div>
 
                             <div class="inputBox-signup">
@@ -116,28 +120,25 @@
                                         <input type="password" name="confirm" required=""/>
                                         <span>Rewrite Password</span>
                                     </div>
-
                                 </div>
-
+                                <p class="mess-error">${requestScope.USER_ERROR.confirmError}</p>
                             </div>
                             <div class="inputBox-signup">
                                 <div class="capcha">
-<!--                                    <div class="g-recaptcha" data-sitekey="6LeNnIkmAAAAAE6G3NHLFsbSGl1rrhgmV3oAEUyh" data-callback='onSubmit' 
-                                         data-action='submit' required="">Submit></div>-->
                                     <div class="captcha" id="html_element"></div>
                                     <div id="error" style="color: red; font-size: 15px;"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="login-success">
-                            <input type="submit" name="action" value="Sign Up"/>
+                            <input type="hidden" name="action" value="Sign Up"/>
+                            <input type="submit" value="Sign Up"/>
                             <input type="hidden" name="roleID" required="" value="US"/>
                         </div>
-
                     </form>
                 </div>
 
-                <div class="slide-box">
+                <div class="slide-box ${requestScope.TYPE == 'right' ? 'right' : ""}">
                     <div>
                         <h2>
                             Welcome to, Lilylane Store.
@@ -157,6 +158,9 @@
             </div>
 
         </div>
+        <c:if test="${requestScope.MESSAGE != null}">
+            <c:import url="toast.jsp"></c:import>
+        </c:if>
 
         <div class="pop-up" id="popup">
             <a href="#" onclick="hide()" id="close"><i class="fa fa-close" style="font-size:32px"></i></a>
@@ -187,6 +191,13 @@
         <script src="./assets/js/saveInfo.js"></script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"async defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.toast').toast({delay: 5000});
+                $('.toast').toast('show');
+            });
+        </script>
         <script type="text/javascript" defer="">
             var onloadCallback = function () {
                 grecaptcha.render('html_element', {
@@ -194,7 +205,7 @@
                 });
             };
         </script>
-        <script>
+<!--        <script>
 			window.onload = function (){
                             let isValid = false;
 				const form = document.getElementById("register");
@@ -210,7 +221,7 @@
 					}
 				});
 			}
-	</script>
+	</script>-->
         <script>
             function change() {
                 var changebtn = document.getElementById("change");

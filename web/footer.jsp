@@ -10,8 +10,8 @@
         <div class="row footer">
             <div class="col-md-3" style="margin: auto;">
                 <div style="text-align: center;">
-                    <img src="./assets/img/logo/353377363_270213872326179_7859750982400627396_n.png" alt=""
-                         style="width: 120%;">
+                    <img src="./assets/img/logo/lily-lane-logo-web.png" alt=""
+                         style="width: 50%;">
                 </div>
             </div>
 

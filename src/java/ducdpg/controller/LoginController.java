@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
 public class LoginController extends HttpServlet {
 
+    private static final String HOME_PAGE = "HomeController";
     private static final String LOGIN_PAGE = "login.jsp";
     private static final String US = "US";
     private static final String USER_PAGE = "user.jsp";
@@ -50,7 +51,7 @@ public class LoginController extends HttpServlet {
                     if (AD.equals(roleID)) {
                         url = ADMIN_PAGE;
                     } else if (US.equals(roleID)) {
-                        url = USER_PAGE;
+                        url = HOME_PAGE;
                     } else {
                         request.setAttribute("MESSAGE", "Your role is not support.");
                         url = LOGIN_PAGE;

@@ -26,15 +26,16 @@ public class UserDAO {
     private static final String SEARCH = "SELECT userID, fullName, roleID, address, email "
             + "FROM tblUsers "
             + "WHERE fullName like ?";
-    
     private static final String UPDATE = "UPDATE tblUsers SET fullName=?, roleID=? WHERE userID=?";
     private static final String DELETE = "DELETE tblUsers WHERE userID=?";
+    private static final String ADD_USER = "INSERT INTO tblUsers (userID, fullName, roleID, password, email, status) "
+            + "VALUES(?,?,?,?,?,?)";
     
 //    Google
     private static final String LOGIN_GOOGLE = "SELECT userID, fullName, roleID, address, avatar "
             + "FROM tblUsers "
             + "WHERE googleID=? and email=?";
-    private static final String INSERT_GOOGLE = "INSERT INTO tblUsers (userID, fullName, roleID, password, googleID, email, avatar) VALUES(?,?,?,?,?,?,?)";
+    private static final String INSERT_GOOGLE = "INSERT INTO tblUsers (userID, fullName, roleID, password, googleID, email, avatar, status) VALUES(?,?,?,?,?,?,?,?)";
 
 
     public UserDTO checkLogin(String userID, String password) throws SQLException {
@@ -135,6 +136,30 @@ public class UserDAO {
         }
         return check;
     }
+    
+    public boolean insert(UserDTO newUser) throws SQLException, ClassNotFoundException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                ptm = conn.prepareStatement(ADD_USER);
+                ptm.setString(1, newUser.getUserID());
+                ptm.setString(2, newUser.getFullName());
+                ptm.setString(3, newUser.getRoleID());
+                ptm.setString(4, newUser.getPassword());
+                ptm.setString(5, newUser.getEmail());
+                ptm.setBoolean(6, true);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } finally {
+            if (ptm != null) ptm.close();
+            if (conn != null) conn.close();
+        }
+        return check;
+    }
+    
 
     public UserDTO checkLoginGoogle(String googleID, String email) throws ClassNotFoundException, SQLException {
         UserDTO user = null;
@@ -181,6 +206,7 @@ public class UserDAO {
                 ptm.setString(5, newUser.getGoogleID());
                 ptm.setString(6, newUser.getEmail());
                 ptm.setString(7, newUser.getAvatar());
+                ptm.setBoolean(8, true);
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
         }
@@ -190,5 +216,7 @@ public class UserDAO {
         }
         return check;
     }
+
+
     
 }

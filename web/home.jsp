@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="./assets/css/bootstrap.min/bootstrap.min.css">
     <!-- css -->
     <link rel="stylesheet" href="./assets/css/font/css/all.css">
+    <link rel="stylesheet" href="./assets/css/toastMessage.css">
+    <link rel="stylesheet" href="./assets/css/styleheader.css">
+    <link rel="stylesheet" href="./assets/css/stylefooter.css">
     <link rel="stylesheet" href="./assets/css/stylehome.css">
 </head>
 
@@ -101,7 +104,10 @@
             </div>
         </div>
     </div>
-
+    
+    <c:if test="${requestScope.MESSAGE != null}">
+        <c:import url="toast.jsp"></c:import>
+    </c:if>
 
     <div class="container-fluid best-seller" id="move">
         <div class="best-seller-title">
@@ -116,11 +122,12 @@
                     <c:forEach var="pro" items="${sessionScope.listP}">
                         <div class="best-seller-product-list">
                             <div class="hot-sale">HOT</div>
-                            <form action="">
+                            <form action="MainController">
                                 <div class="best-add-to-cart">
                                     <div class="cart-service">
                                         <button><i class="fa-solid fa-search"></i></button>
-                                        <input type="submit" value="ADD TO CART">
+                                        <input type="hidden" name="productID" value="${pro.ID}"/>
+                                        <input type="submit" name="action" value="ADD TO CART"/>
                                         <button><i class="fa-solid fa-shuffle"></i></button>
                                     </div>
                                 </div>
@@ -171,6 +178,13 @@
     <script src="./assets/js/bootstrap/jquery.min.js"></script>
     <script src="./assets/js/bootstrap/popper.min.js"></script>
     <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.toast').toast({delay: 5000});
+            $('.toast').toast('show');
+        });
+    </script>
 </body>
 
 </html>
