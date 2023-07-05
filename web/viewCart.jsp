@@ -66,7 +66,7 @@
     </c:if>
     
     <c:if test="${sessionScope.CART != null}">
-        <c:if test="${not empty sessionScope.CART}">
+        <c:if test="${not empty sessionScope.CART.cart}">
             <div class="container-fluid">
             <div class="row banner">
                 <div class="banner-text">
@@ -80,14 +80,12 @@
             <div class="container">
                 <div class="row">
                     <div class="title-page col-md-12">
-                        <h4><a href="./home.html"><i class="fa-solid fa-home"></i></a>
-                            <i class="fa-solid fa-angle-right"></i> Your shopping
-                            cart
+                        <h4><a href="MainController"><i class="fa-solid fa-home"></i></a>
+                            <i class="fa-solid fa-angle-right"></i> Your shopping cart
                         </h4>
                     </div>
                 </div>
-
-
+                
 
                 <form action="">
                     <div class="checkout">
@@ -102,20 +100,21 @@
                                 </tr>
                             </thead>
                             <tbody class="left-tbody">
-
+                                <c:forEach var="entry" varStatus="counter" items="${sessionScope.CART.cart}">
+                                    <c:set scope="request" var="total" value="${requestScope.total + entry.value.quantity * entry.value.price}"></c:set>
                                 <tr>
                                     <td>
                                         <div class="product">
-                                            <img src="./assets/img/best-seller/Pink-Flower-Tree.png" alt width="70px"
+                                            <img src="./assets/img/best-seller/${entry.value.img}" alt width="70px"
                                                  height="70px">
-                                            <p>Pink Flower Tree</p>
+                                            <p>${entry.value.name}</p>
                                         </div>
                                     </td>
-                                    <td> <span>$18.00</span></td>
+                                    <td> <span>${entry.value.price}</span></td>
                                     <td class="quantity">
-                                        <input type="number" value="1" min="1">
+                                        <input type="number" value="${entry.value.quantity}" min="1">
                                     </td>
-                                    <td>$18.00</td>
+                                    <td>${entry.value.price * entry.value.quantity}</td>
                                     <td>
                                         <div class="action">
                                             <div class="update">
@@ -129,136 +128,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <div class="product">
-                                            <img src="./assets/img/best-seller/Autumn-basket.webp" alt width="70px"
-                                                 height="70px">
-                                            <p>Autumn basket</p>
-                                        </div>
-                                    </td>
-                                    <td> <span>$18.00</span></td>
-                                    <td class="quantity">
-                                        <input type="number" value="1" min="1">
-                                    </td>
-                                    <td>$18.00</td>
-                                    <td>
-                                        <div class="action">
-                                            <div class="update">
-                                                <!-- <input type="submit" value="Update"> -->
-                                                <button><i class="fa-solid fa-pen-to-square"></i></button>
-                                            </div>
-                                            <div class="delete">
-                                                <!-- <input type="submit" value="Delete"> -->
-                                                <button><i class="fa-solid fa-trash-can"></i></button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="product">
-                                            <img src="./assets/img/best-seller/Autumn-basket.webp" alt width="70px"
-                                                 height="70px">
-                                            <p>Autumn basket</p>
-                                        </div>
-                                    </td>
-                                    <td> <span>$18.00</span></td>
-                                    <td class="quantity">
-                                        <input type="number" value="1" min="1">
-                                    </td>
-                                    <td>$18.00</td>
-                                    <td>
-                                        <div class="action">
-                                            <div class="update">
-                                                <!-- <input type="submit" value="Update"> -->
-                                                <button><i class="fa-solid fa-pen-to-square"></i></button>
-                                            </div>
-                                            <div class="delete">
-                                                <!-- <input type="submit" value="Delete"> -->
-                                                <button><i class="fa-solid fa-trash-can"></i></button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="product">
-                                            <img src="./assets/img/best-seller/Autumn-basket.webp" alt width="70px"
-                                                 height="70px">
-                                            <p>Autumn basket</p>
-                                        </div>
-                                    </td>
-                                    <td> <span>$18.00</span></td>
-                                    <td class="quantity">
-                                        <input type="number" value="1" min="1">
-                                    </td>
-                                    <td>$18.00</td>
-                                    <td>
-                                        <div class="action">
-                                            <div class="update">
-                                                <!-- <input type="submit" value="Update"> -->
-                                                <button><i class="fa-solid fa-pen-to-square"></i></button>
-                                            </div>
-                                            <div class="delete">
-                                                <!-- <input type="submit" value="Delete"> -->
-                                                <button><i class="fa-solid fa-trash-can"></i></button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="product">
-                                            <img src="./assets/img/best-seller/Autumn-basket.webp" alt width="70px"
-                                                 height="70px">
-                                            <p>Autumn basket</p>
-                                        </div>
-                                    </td>
-                                    <td> <span>$18.00</span></td>
-                                    <td class="quantity">
-                                        <input type="number" value="1" min="1">
-                                    </td>
-                                    <td>$18.00</td>
-                                    <td>
-                                        <div class="action">
-                                            <div class="update">
-                                                <!-- <input type="submit" value="Update"> -->
-                                                <button><i class="fa-solid fa-pen-to-square"></i></button>
-                                            </div>
-                                            <div class="delete">
-                                                <!-- <input type="submit" value="Delete"> -->
-                                                <button><i class="fa-solid fa-trash-can"></i></button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="product">
-                                            <img src="./assets/img/best-seller/Autumn-basket.webp" alt width="70px"
-                                                 height="70px">
-                                            <p>Autumn basket</p>
-                                        </div>
-                                    </td>
-                                    <td> <span>$18.00</span></td>
-                                    <td class="quantity">
-                                        <input type="number" value="1" min="1">
-                                    </td>
-                                    <td>$18.00</td>
-                                    <td>
-                                        <div class="action">
-                                            <div class="update">
-                                                <!-- <input type="submit" value="Update"> -->
-                                                <button><i class="fa-solid fa-pen-to-square"></i></button>
-                                            </div>
-                                            <div class="delete">
-                                                <!-- <input type="submit" value="Delete"> -->
-                                                <button><i class="fa-solid fa-trash-can"></i></button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
 
@@ -272,16 +142,16 @@
                                 <tbody>
                                     <tr class="caculator">
                                         <td>Subtotal:</td>
-                                        <td>$167.00</td>
+                                        <td>${requestScope.total} &#8363;</td>
                                     </tr>
                                     <tr class="caculator">
                                         <td>Shipping:</td>
-                                        <td>$3.00</td>
+                                        <td> 20000 &#8363;</td>
                                     </tr>
                                     <tr style="border-top: 2px solid #CCCCCC;"></tr>
                                     <tr class="caculator">
                                         <td class="total">Total:</td>
-                                        <td class="cost">$170.00</td>
+                                        <td class="cost">${requestScope.total + 20000}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" class="check-out">
