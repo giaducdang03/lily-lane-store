@@ -49,7 +49,7 @@ public class Cart {
         return check;
     }
     
-    private boolean remove(String id){
+    public boolean remove(String id){
         boolean check = false;
         try {
             if (this.cart != null){
@@ -64,7 +64,7 @@ public class Cart {
         return check;
     }
     
-    private boolean update(String id, ProductDTO product){
+    public boolean update(String id, ProductDTO product){
         boolean check = false;
         try {
             if (this.cart != null){

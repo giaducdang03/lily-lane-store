@@ -36,6 +36,7 @@ public class LoginController extends HttpServlet {
         String url = LOGIN_PAGE;
         try {
             HttpSession session = request.getSession();
+            String currentPage = (String) session.getAttribute("CurrentPage");
             String userID = request.getParameter("userID");
             String password = request.getParameter("password");
             if (userID != null && password != null) {
@@ -48,13 +49,18 @@ public class LoginController extends HttpServlet {
                 } else {
                     session.setAttribute("LOGIN_USER", loginUser);
                     String roleID = loginUser.getRoleID();
-                    if (AD.equals(roleID)) {
-                        url = ADMIN_PAGE;
-                    } else if (US.equals(roleID)) {
-                        url = HOME_PAGE;
+                    if (currentPage != null) {
+                        url = currentPage;
+                        session.setAttribute("CurrentPage", null);
                     } else {
-                        request.setAttribute("MESSAGE", "Your role is not support.");
-                        url = LOGIN_PAGE;
+                        if (AD.equals(roleID)) {
+                            url = ADMIN_PAGE;
+                        } else if (US.equals(roleID)) {
+                            url = HOME_PAGE;
+                        } else {
+                            request.setAttribute("MESSAGE", "Your role is not support.");
+                            url = LOGIN_PAGE;
+                        }
                     }
                 }
             }

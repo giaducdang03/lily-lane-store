@@ -15,7 +15,7 @@ public class ProductDTO {
     private int price;
     private int quantity;
     private String img;
-
+    
     public ProductDTO() {
         this.ID = "";
         this.name = "";
@@ -31,7 +31,7 @@ public class ProductDTO {
         this.quantity = quantity;
         this.img = img;
     }
-
+    
     public String getID() {
         return ID;
     }

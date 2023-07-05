@@ -4,6 +4,7 @@
     Author     : giadu
 --%>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -133,7 +134,7 @@
                                 </div>
                                 <div class="best-text">
                                     <p>${pro.name}</p>
-                                    <p>${pro.price} &#8363;</p>
+                                    <p><fmt:formatNumber value="${pro.price}" pattern="#,###" /> &#8363;</p>
                                 </div>
                             </form>
                             <div class="best-seller-product-object-one child" style="background-image: url('./assets/img/best-seller/${pro.img}');"></div>

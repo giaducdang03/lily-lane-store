@@ -37,7 +37,7 @@
         <div class="container-fluid navbar-content">
             <nav class="navbar navbar-expand-lg">
                 <div class="logo col-md-2">
-                    <a class="navbar-brand" href="#"><img
+                    <a class="navbar-brand" href="MainController"><img
                             src="./assets/img/logo/lily-lane-logo-web.png" alt width="100px"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

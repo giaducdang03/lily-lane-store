@@ -85,13 +85,15 @@
 }
 
 .table-cart  tr td:first-child {
+    text-align: left;
     width: 150px;
     font-weight: 600;
 }
 
 .table-cart thead th:first-child {
-    max-width: 350px;
-    min-width: 300px;
+    text-align: left;
+    max-width: 450px;
+    min-width: 350px;
 }
 
 td {
@@ -126,7 +128,8 @@ td {
 
 .checkout p {
     font-size:17px;
-    color: #757575;
+    /* color: #757575; */
+    color: #000000;
     font-weight: 600;
 }
 

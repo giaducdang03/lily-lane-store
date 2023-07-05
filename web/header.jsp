@@ -50,7 +50,7 @@
             <div class="right-nav nav-item col-md-3">
                 <ul class="col-md-5 cart navbar-nav mr-auto">
                     <li class="nav-item" style="padding: 0;">
-                        <a class="nav-link" href="viewCart.jsp" style="font-size: 20px;"><i
+                        <a class="nav-link" href="MainController?action=ViewCart" style="font-size: 20px;"><i
                                 class="fa-solid fa-cart-shopping"></i></a>
                     </li>
                 </ul>

@@ -33,8 +33,21 @@ public class MainController extends HttpServlet {
     private static final String UPDATE_USER_CONTROLLER = "UpdateUserController";
     private static final String DELETE_USER = "Delete";
     private static final String DELETE_USER_CONTROLLER = "DeleteUserController";
+    // shopping
     private static final String ADD_TO_CART = "ADD TO CART";
     private static final String ADD_TO_CART_CONTROLLER = "AddToCartController";
+    private static final String VIEW_CART = "ViewCart";
+    private static final String VIEW_CART_PAGE = "viewCart.jsp";
+    private static final String UPDATE_CART = "UpdateCart";
+    private static final String UPDATE_CART_CONTROLLER = "UpdateCartController";
+    private static final String DELETE_CART = "DeleteCart";
+    private static final String DELETE_CART_CONTROLLER = "DeleteCartController";
+    private static final String CHECKOUT = "CHECKOUT";
+    private static final String CHECKOUT_CONTROLLER = "CheckoutController";
+    private static final String PAYMENT = "Payment";
+    private static final String PAYMENT_CONTROLLER = "PaymentController";
+    private static final String PAYMENT_RESULT = "PaymentResult";
+    private static final String PAYMENT_RESULT_CONTROLLER = "PaymentResultController";
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -66,6 +79,21 @@ public class MainController extends HttpServlet {
             }
             else if (ADD_TO_CART.equals(action)) {
                 url = ADD_TO_CART_CONTROLLER;
+            }
+            else if (VIEW_CART.equals(action)) {
+                url = VIEW_CART_PAGE;
+            }
+            else if (UPDATE_CART.equals(action)) {
+                url = UPDATE_CART_CONTROLLER;
+            }
+            else if (DELETE_CART.equals(action)) {
+                url = DELETE_CART_CONTROLLER;
+            }
+            else if (CHECKOUT.equals(action)) {
+                url = CHECKOUT_CONTROLLER;
+            }
+            else if (PAYMENT.equals(action)) {
+                url = PAYMENT_CONTROLLER;
             }
             else {
                 url = NOT_FOUND;

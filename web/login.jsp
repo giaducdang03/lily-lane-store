@@ -78,7 +78,7 @@
                     <div class="header">
                         <div>SIGN UP</div>
                     </div>
-                    <form id="register" action="MainController" method="POST">
+                    <form id="form-regis" action="MainController" method="POST">
                         <div class="login-type">
                             <div class="inputBox-signup">
                                 <div class="inputBox">
@@ -205,10 +205,10 @@
                 });
             };
         </script>
-<!--        <script>
+        <script>
 			window.onload = function (){
                             let isValid = false;
-				const form = document.getElementById("register");
+				const form = document.getElementById("form-regis");
 				const error = document.getElementById("error");
 				
 				form.addEventListener("submit", function (event){
@@ -221,7 +221,7 @@
 					}
 				});
 			}
-	</script>-->
+	</script>
         <script>
             function change() {
                 var changebtn = document.getElementById("change");
