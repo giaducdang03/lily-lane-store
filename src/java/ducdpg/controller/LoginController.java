@@ -49,19 +49,20 @@ public class LoginController extends HttpServlet {
                 } else {
                     session.setAttribute("LOGIN_USER", loginUser);
                     String roleID = loginUser.getRoleID();
-                    if (currentPage != null) {
-                        url = currentPage;
-                        session.setAttribute("CurrentPage", null);
-                    } else {
-                        if (AD.equals(roleID)) {
-                            url = ADMIN_PAGE;
-                        } else if (US.equals(roleID)) {
-                            url = HOME_PAGE;
+                    if (AD.equals(roleID)) {
+                        url = ADMIN_PAGE;
+                    } else if (US.equals(roleID)) {
+                        if (currentPage != null) {
+                            url = currentPage;
+                            session.setAttribute("CurrentPage", null);
                         } else {
-                            request.setAttribute("MESSAGE", "Your role is not support.");
-                            url = LOGIN_PAGE;
+                            url = HOME_PAGE;
                         }
+                    } else {
+                         request.setAttribute("MESSAGE", "Your role is not support.");
+                        url = LOGIN_PAGE;
                     }
+
                 }
             }
 

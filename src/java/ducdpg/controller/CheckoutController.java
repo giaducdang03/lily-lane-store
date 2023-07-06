@@ -5,10 +5,15 @@
 
 package ducdpg.controller;
 
+import ducdpg.message.IconMessage;
+import ducdpg.message.MessageDTO;
+import ducdpg.products.ProductDAO;
 import ducdpg.products.ProductDTO;
 import ducdpg.shopping.Cart;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,23 +36,31 @@ public class CheckoutController extends HttpServlet {
         String url = ERROR;
         try {
             HttpSession session = request.getSession();
+            ProductDAO pDao = new ProductDAO();
             if (session != null){
                 session.setAttribute("CurrentPage", "CheckoutController");
                 Cart cart = (Cart)session.getAttribute("CART");
+                ProductDTO productTravesal = new ProductDTO();
                 if (cart != null){
-                    if (!cart.getCart().values().isEmpty()){
+                    List<ProductDTO> listError = new ArrayList<>();
                         int totalCart = 0;
                         for (ProductDTO product : cart.getCart().values()) {
+                            productTravesal = pDao.getProductUnavaiable(product);
+                            if (productTravesal != null){
+                                listError.add(productTravesal);
+                            }
                             totalCart += (product.getPrice() * product.getQuantity());
+                        }
+                        if (listError.size() > 0) {
+                            MessageDTO message = new MessageDTO("error", "Checkout", IconMessage.ERROR, "Somethings error. Try again!");
+                            request.setAttribute("MESSAGE", message);
+                            request.setAttribute("PRODUCT_ERROR", listError);
                         }
                         session.setAttribute("CHECKOUT", cart);
                         request.setAttribute("TOTAL_CART", totalCart);
                         url = SUCCESS;
-                    }
                 }
             }
-           
-            
         } catch (Exception e){
             log("Error at CheckoutController: " + e.toString());
         } finally {

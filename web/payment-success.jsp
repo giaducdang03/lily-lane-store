@@ -34,6 +34,10 @@
 <body>
     
     <c:import url="header.jsp"></c:import>
+    
+    <c:if test="${requestScope.MESSAGE != null}">
+        <c:import url="toast.jsp"></c:import>
+    </c:if>
 
     <div class="outline">
         <div class="container payment-body">
@@ -102,10 +106,15 @@
                             </tr>
                             <tr>
                                 <th>Payment date:</td>
-                                <td>${requestScope.PAYMENT.vnp_PayDate}</td>
+                                <td>
+                                    <fmt:parseDate value="${requestScope.PAYMENT.vnp_PayDate}" var="parsedDate" pattern="yyyyMMddHHmmss" />
+                                    <fmt:formatDate value="${parsedDate}" pattern="dd/MM/yyyy HH:mm:ss" var="formattedDate" />
+                                    ${formattedDate}
+                                </td>
                             </tr>
                         </tbody>
                     </table>
+                    <p>We'll email you an order confirmation with details information.</p>
                     <div class="thanks">
                         <p>Thank you for choosing us.</p>
                         <p>See you again!</p>
@@ -126,6 +135,13 @@
     <script src="./assets/js/bootstrap/jquery.min.js"></script>
     <script src="./assets/js/bootstrap/popper.min.js"></script>
     <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.toast').toast({delay: 5000});
+            $('.toast').toast('show');
+        });
+    </script>
 </body>
 
 </html>

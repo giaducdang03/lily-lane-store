@@ -33,9 +33,10 @@ public class OrderDTO {
         this.payment_date = payment_date;
     }
     
-    public OrderDTO(String orderCode, String userID, int total, String status, String payment_method) {
+    public OrderDTO(String orderCode, String userID, Date orderDate, int total, String status, String payment_method) {
         this.orderCode = orderCode;
         this.userID = userID;
+        this.orderDate = orderDate;
         this.total = total;
         this.status = status;
         this.payment_method = payment_method;

@@ -80,7 +80,7 @@
                         <a href="#">
                             <li><i class="fa-solid fa-user"></i> Information</li>
                         </a>
-                        <a href="#">
+                        <a href="MainController?action=ViewCart">
                             <li><i class="fa-solid fa-shopping-cart"></i> My cart </li>
                         </a>
                          <c:url var="logoutLink" value="MainController">
@@ -130,7 +130,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input class="save-btn" type="submit" name="action" value="Save">
+                                    <input class="save-btn" type="submit" value="Save">
                                 </td>
                             </tr>
                         </form>

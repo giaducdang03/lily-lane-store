@@ -75,6 +75,11 @@
     border: none;
 }
 
+.table-cart .in4 input {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
 .table-cart thead th {
     text-align: center;
 }
@@ -363,3 +368,9 @@ td {
     color: #FF6B6B;
 }
 
+/* checkout error */
+.mess-error {
+    font-size: 15px;
+    color: red;
+    font-weight: 500;
+}

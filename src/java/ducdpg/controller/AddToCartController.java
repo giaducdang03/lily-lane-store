@@ -34,7 +34,9 @@ public class AddToCartController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        // response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
         String url = ERROR;
         try {
             String productID = request.getParameter("productID");
@@ -48,15 +50,23 @@ public class AddToCartController extends HttpServlet {
             }
             cart.add(productID, buyProduct);
             session.setAttribute("CART", cart);
-            url = SUCCESS;
+            // url = SUCCESS;
+           
             MessageDTO message = new MessageDTO("success", "My cart", IconMessage.SUCCESS, "Add " + quantity + " " + buyProduct.getName() + " successfully.");
-            request.setAttribute("MESSAGE", message);
+            PrintWriter out = response.getWriter();
+//            JsonObject json = new JsonObject();
+//            json.addProperty("message", "Success");
+//            out.print(json.toString());
+
+              out.print("abc");
+        
+            // request.setAttribute("MESSAGE", message);
         } catch (Exception e){
             log("Error at AddToCartController: " + e.toString());
             MessageDTO message = new MessageDTO("error", "My cart", IconMessage.ERROR, "Somethings error.");
             request.setAttribute("MESSAGE", message);
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+//            request.getRequestDispatcher(url).forward(request, response);
         }
 //        response.setContentType("application/json");
 //        PrintWriter out = response.getWriter();

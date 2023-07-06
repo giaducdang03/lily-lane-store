@@ -47,7 +47,8 @@ public class LoginGoogleController extends HttpServlet {
             UserGoogleDTO userGoogle = getUserInfo(accessToken);
             String googleID = userGoogle.getId();
             String email = userGoogle.getEmail();
-            System.out.println(userGoogle);
+            HttpSession session = request.getSession();
+            String currentPage = (String) session.getAttribute("CurrentPage");
             UserDAO dao = new UserDAO();
             
             UserDTO loginUserGoogle = dao.checkLoginGoogle(googleID, email);
@@ -62,19 +63,24 @@ public class LoginGoogleController extends HttpServlet {
                 UserDTO newUser = new UserDTO(userID, fullName, password, roleID, "", googleID, email, avatar);
                 boolean checkInsert = dao.insertGoogle(newUser);
                 if (checkInsert) {
-                    HttpSession session = request.getSession();
+                    session = request.getSession();
                     newUser.setPassword("******");
                     session.setAttribute("LOGIN_USER", newUser);
                     url = USER_PAGE;
                 }
             } else {
-                HttpSession session = request.getSession();
+                session = request.getSession();
                 session.setAttribute("LOGIN_USER", loginUserGoogle);
                 String roleID = loginUserGoogle.getRoleID();
                 if (AD.equals(roleID)){
                     url = ADMIN_PAGE;
                 } else if (US.equals(roleID)){
-                    url = USER_PAGE;
+                    if (currentPage != null) {
+                        url = currentPage;
+                        session.setAttribute("CurrentPage", null);
+                    } else {
+                        url = USER_PAGE;
+                    }
                 } else {
                     request.setAttribute("ERROR", "Your role is not support");
                     url = LOGIN_PAGE;

@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="./assets/css/styleheader.css">
     <link rel="stylesheet" href="./assets/css/stylefooter.css">
     <link rel="stylesheet" href="./assets/css/stylehome.css">
+
 </head>
 
 <body>
@@ -123,7 +124,7 @@
                     <c:forEach var="pro" items="${sessionScope.listP}">
                         <div class="best-seller-product-list">
                             <div class="hot-sale">HOT</div>
-                            <form action="MainController">
+                            <form id="form-buy" action="MainController">
                                 <div class="best-add-to-cart">
                                     <div class="cart-service">
                                         <button><i class="fa-solid fa-search"></i></button>
@@ -179,6 +180,7 @@
     <script src="./assets/js/bootstrap/jquery.min.js"></script>
     <script src="./assets/js/bootstrap/popper.min.js"></script>
     <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
+        
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function() {

@@ -30,6 +30,7 @@ public class UserDAO {
     private static final String DELETE = "DELETE tblUsers WHERE userID=?";
     private static final String ADD_USER = "INSERT INTO tblUsers (userID, fullName, roleID, password, email, status) "
             + "VALUES(?,?,?,?,?,?)";
+    private static final String UPDATE_ADDRESS = "UPDATE tblUsers SET address=? WHERE userID=?";
     
 //    Google
     private static final String LOGIN_GOOGLE = "SELECT userID, fullName, roleID, address, avatar "
@@ -106,6 +107,27 @@ public class UserDAO {
                 ptm.setString(1, user.getFullName());
                 ptm.setString(2, user.getRoleID());
                 ptm.setString(3, user.getUserID());
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) ptm.close();
+            if (conn != null) conn.close();
+        }
+        return check;
+    }
+    
+    public boolean updateAddress(String userID, String newAddress) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UPDATE_ADDRESS);
+                ptm.setString(1, newAddress);
+                ptm.setString(2, userID);
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e){

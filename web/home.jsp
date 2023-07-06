@@ -26,11 +26,13 @@
     <link rel="stylesheet" href="./assets/css/styleheader.css">
     <link rel="stylesheet" href="./assets/css/stylefooter.css">
     <link rel="stylesheet" href="./assets/css/stylehome.css">
+
 </head>
 
 <body>
     <c:import url="header.jsp"></c:import>
 
+    <div id="toast"></div>
     <div class="body">
         <div class="banner">
             <div class="banner-img">
@@ -106,9 +108,7 @@
         </div>
     </div>
     
-    <c:if test="${requestScope.MESSAGE != null}">
-        <c:import url="toast.jsp"></c:import>
-    </c:if>
+
 
     <div class="container-fluid best-seller" id="move">
         <div class="best-seller-title">
@@ -123,12 +123,13 @@
                     <c:forEach var="pro" items="${sessionScope.listP}">
                         <div class="best-seller-product-list">
                             <div class="hot-sale">HOT</div>
-                            <form action="MainController">
+                            <form id="form">
                                 <div class="best-add-to-cart">
                                     <div class="cart-service">
                                         <button><i class="fa-solid fa-search"></i></button>
                                         <input type="hidden" name="productID" value="${pro.ID}"/>
-                                        <input type="submit" name="action" value="ADD TO CART"/>
+                                        <button type="button" onclick="addToCart('${pro.ID}')" >Add</button>
+
                                         <button><i class="fa-solid fa-shuffle"></i></button>
                                     </div>
                                 </div>
@@ -172,6 +173,8 @@
         </div>
     </div>
     
+    
+    
     <c:import url="footer.jsp"></c:import>
 
 
@@ -179,13 +182,97 @@
     <script src="./assets/js/bootstrap/jquery.min.js"></script>
     <script src="./assets/js/bootstrap/popper.min.js"></script>
     <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <!--<script src="./assets/js/toastMessage.js"></script>-->
+        
     <script>
+        function toastCus({title = '', message = '', type = 'info', duration = 5000}){
+            console.log(title);
+    const main = document.getElementById('toast');
+    console.log(main);
+    if (main){
+        const toast = document.createElement('div');
+
+        //auto remove toast
+        const autoRemoveId = setTimeout(function(){
+            main.removeChild(toast);
+        }, duration + 1000);
+
+        //remoove toast when cliked
+        toast.onclick = function(e){
+            if (e.target.closest('.toast_close')){
+                main.removeChild(toast);
+                clearTimeout(autoRemoveId);
+            }
+        }
+
+        const icons = {
+            success: 'fa-solid fa-circle-check',
+            info: 'fa-solid fa-circle-info',
+            warning: 'fa-solid fa-circle-exclamation',
+            error: 'fa-solid fa-circle-exclamation',
+        };
+        const icon = icons[type];
+        const delay = (duration/1000).toFixed(2);
+        toast.classList.add('toast',"toast--"+type);
+        toast.style.animation = 'slideInleft ease .3s, fadeOut linear 1s ' + delay + 's forwards';
+        toast.innerHTML = 
+            '<div class="toast_icon">' +
+                '<i class="' + icon + '"></i>' +
+            '</div>' +
+            '<div class="toast_body">' +
+                '<h3 class="toast_title">' + title + '</h3>' +
+                '<p class="toast_msg">' + message + '</p>' +
+            '</div>' +
+            '<div class="toast_close">' +
+                '<i class="fa-solid fa-xmark"></i>' +
+            '</div>';
+        console.log(toast);
+        main.appendChild(toast);
+
+        
+    }
+}
+    </script>
+    <script>
+        async function  addToCart(id){
+            const response = await fetch("MainController?action=ADD TO CART&productID="+id);
+            if(response.status === 200){
+//                const responseBody = await response.text();
+//                showToast(responseBody);
+//                alert('dcmm thanh cong roi');
+            } else {
+//
+            }
+            toastCus({title: 'success', message: 'hihi'});
+            
+            console.log(await response.text());
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+   
+<!--    <script>
         $(document).ready(function() {
             $('.toast').toast({delay: 5000});
             $('.toast').toast('show');
         });
-    </script>
+        
+        function showToast(message) {
+            var toast = `
+                <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong class="me-auto">Toast Message</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                </div>
+            `;
+            $('body').append(toast);
+            $('.toast').toast('show');
+        }
+    </script>-->
 </body>
 
 </html>

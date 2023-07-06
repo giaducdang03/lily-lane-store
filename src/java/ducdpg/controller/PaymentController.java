@@ -5,6 +5,10 @@
 
 package ducdpg.controller;
 
+import ducdpg.email.BillEmail;
+import ducdpg.email.Email;
+import ducdpg.message.IconMessage;
+import ducdpg.message.MessageDTO;
 import ducdpg.payment.Config;
 import ducdpg.products.ProductDAO;
 import ducdpg.products.ProductDTO;
@@ -12,7 +16,9 @@ import ducdpg.shopping.Cart;
 import ducdpg.shopping.OrderDAO;
 import ducdpg.shopping.OrderDTO;
 import ducdpg.shopping.OrderDetailsDAO;
+import ducdpg.users.UserDAO;
 import ducdpg.users.UserDTO;
+import ducdpg.utils.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -23,6 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -60,10 +67,28 @@ public class PaymentController extends HttpServlet {
             String orderCode = Config.getRandomNumber(6);
             String payment_method = request.getParameter("payment-method").toUpperCase();
             String sTotal = request.getParameter("totalPayment");
+            Date orderDate = new Date();
             int total_payment = Integer.parseInt(sTotal);
+            // address
+            UserDAO uDao = new UserDAO();
+            if (userAddress == null) {
+                String newAddress = request.getParameter("address");
+                boolean checUpdatetAddr = uDao.updateAddress(userID, newAddress);
+                if (checUpdatetAddr){
+                    loginUser.setAddress(newAddress);
+                    session.setAttribute("LOGIN_USER", loginUser);
+                }
+            }
+            //------
+            //send Email
+            String customer = loginUser.getFullName();
+            String address = loginUser.getAddress();
+            String amount_paid = Utils.formatNumber(total_payment);
+            String billEmail = BillEmail.billEmail(orderCode, customer, address, userEmail, payment_method, "-", amount_paid);
+            //-----------
             Cart cart = (Cart) session.getAttribute("CHECKOUT");
             String payment_status = "PENDING";
-            OrderDTO newOrder = new OrderDTO(orderCode, userID, total_payment, payment_status, payment_method);
+            OrderDTO newOrder = new OrderDTO(orderCode, userID, orderDate, total_payment, "PENDING", payment_method);
             OrderDAO oDao = new OrderDAO();
             ProductDAO pDao = new ProductDAO();
             int lastInsertID = oDao.addOrder(newOrder);
@@ -83,6 +108,11 @@ public class PaymentController extends HttpServlet {
                     request.setAttribute("ORDER", newOrder);
                     session.setAttribute("CART", null);
                     session.setAttribute("CHECKOUT", null);
+                    boolean sendEmail = Email.sendEmail(userEmail, "Invoice #"+orderCode, billEmail);
+                    if (!sendEmail) {
+                        MessageDTO message = new MessageDTO("error", "Send email", IconMessage.ERROR, "There was an error in sending the email.");
+                        request.setAttribute("MESSAGE", message);
+                    }
                     url = PENDING;
                     request.getRequestDispatcher(url).forward(request, response);
                 }

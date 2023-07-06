@@ -31,6 +31,11 @@
     </head>
     <body>
         <c:import url="header.jsp"></c:import>
+        
+        <c:if test="${requestScope.MESSAGE != null}">
+            <c:import url="toast.jsp"></c:import>
+        </c:if>
+        
         <div class="outline">
             <div class="container payment-body">
                 <div class="row payment-container">
@@ -82,6 +87,13 @@
                     </div>
                     <div class="col-md-12 payment-details">
                         <table>
+                            <tr>
+                                <th>Bill create date:</td>
+                                <td>
+                                    <fmt:formatDate value="${requestScope.ORDER.orderDate}" pattern="dd/MM/yyyy HH:mm:ss" var="formattedDate" />
+                                    ${formattedDate}
+                                </td>
+                            </tr>
                             <tbody>
                                 <tr>
                                     <th>Payment type:</td>
@@ -89,13 +101,13 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <p>We'll email you an order confirmation with details information.</p>
                         <div class="thanks">
                             <p>Thank you for choosing us.</p>
                             <p>See you again!</p>
                         </div>
                         <div class="payment-footer">
                             <p><a href="MainController">Back to home page</a></p>
-                            <p>Powered by <a href="#">VNPAY</a></p>
                         </div>
                     </div>
 
@@ -108,5 +120,12 @@
     <script src="./assets/js/bootstrap/jquery.min.js"></script>
     <script src="./assets/js/bootstrap/popper.min.js"></script>
     <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.toast').toast({delay: 5000});
+            $('.toast').toast('show');
+        });
+    </script>
     </body>
 </html>

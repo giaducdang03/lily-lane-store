@@ -27,8 +27,7 @@ public class OrderDAO {
 
     public int addOrder(OrderDTO order) throws SQLException {
         // get current time
-        Date currentDate = new Date();
-        java.sql.Date order_date = new java.sql.Date(currentDate.getTime());
+        java.sql.Date order_date = new java.sql.Date(order.getOrderDate().getTime());
         
         int lastInsertID = 0;
         Connection conn = null;

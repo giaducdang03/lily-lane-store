@@ -71,15 +71,15 @@
                             </tr>
                             <tr>
                                 <th>Transaction ID:</th>
-                                <td>${requestScope.PAYMENT.vnp_TransactionNo}}</td>
+                                <td>${requestScope.PAYMENT.vnp_TransactionNo}</td>
                             </tr>
                             <tr>
                                 <th>Error code:</th>
                                 <td class="error-code">
-                                    ${requestScope.PAYMENT.vnp_ResponseCode}
                                     <c:if test="${requestScope.PAYMENT.vnp_ResponseCode == '24'}">
-                                        You cancelled payment !
+                                        (You cancelled payment!)
                                     </c:if>
+                                    ${requestScope.PAYMENT.vnp_ResponseCode}
                                 </td>
                             </tr>
                         </tbody>
@@ -95,23 +95,27 @@
                         <tbody>
                             <tr>
                                 <th>Billing content:</td>
-                                <td>${requestScope.ORDER.vnp_OrderInfo}</td>
+                                <td>${requestScope.PAYMENT.vnp_OrderInfo}</td>
                             </tr>
                             <tr>
                                 <th>Bank code:</td>
-                                <td>${requestScope.ORDER.vnp_BankCode}</td>
+                                <td>${requestScope.PAYMENT.vnp_BankCode}</td>
                             </tr>
                             <tr>
                                 <th>Payment type:</td>
-                                <td>${requestScope.ORDER.vnp_CardType}</td>
+                                <td>${requestScope.PAYMENT.vnp_CardType}</td>
                             </tr>
                             <tr>
                                 <th>Bank transaction no:</td>
-                                <td>${requestScope.ORDER.vnp_BankTranNo}</td>
+                                <td>${requestScope.PAYMENT.vnp_BankTranNo}</td>
                             </tr>
                             <tr>
                                 <th>Payment date:</td>
-                                <td>${requestScope.ORDER.vnp_PayDate}</td>
+                                <td>
+                                    <fmt:parseDate value="${requestScope.PAYMENT.vnp_PayDate}" var="parsedDate" pattern="yyyyMMddHHmmss" />
+                                    <fmt:formatDate value="${parsedDate}" pattern="dd/MM/yyyy HH:mm:ss" var="formattedDate" />
+                                    ${formattedDate}
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -120,7 +124,7 @@
                         <p>See you again!</p>
                     </div>
                     <div class="payment-footer">
-                        <p><a href="#">Back to home page</a></p>
+                        <p><a href="MainController">Back to home page</a></p>
                         <p>Powered by <a href="#">VNPAY</a></p>
                     </div>
                 </div>

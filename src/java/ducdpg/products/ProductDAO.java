@@ -108,6 +108,24 @@ public class ProductDAO {
         }
         return product;
     }
+    
+    public ProductDTO getProductUnavaiable(ProductDTO cart) throws SQLException {
+        ProductDTO product = null;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            product = getBuyProductByID(cart.getID());
+            if (product.getQuantity() >= cart.getQuantity()) {
+                product = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) ptm.close();
+            if (conn != null) conn.close();
+        }
+        return product;
+    }
 
     public boolean updateQuantity(ProductDTO cart) throws SQLException {
         ProductDTO product = null;
