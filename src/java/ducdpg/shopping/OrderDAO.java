@@ -61,7 +61,7 @@ public class OrderDAO {
         return lastInsertID;
     }
     
-    public boolean updateOrder(String vnp_TxnRef, String vnp_PayDate, boolean status) throws SQLException {
+    public boolean updateOrder(String vnp_TxnRef, String vnp_PayDate, String status) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -74,7 +74,7 @@ public class OrderDAO {
 
                 ptm = conn.prepareStatement(UPDATE_ORDER);
                 ptm.setObject(1, timestamp);
-                ptm.setBoolean(2, status);
+                ptm.setString(2, status);
                 ptm.setString(3, vnp_TxnRef);
                 check = ptm.executeUpdate() > 0 ? true : false;
             }

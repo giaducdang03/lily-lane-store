@@ -6,7 +6,10 @@
 package ducdpg.controller;
 
 import ducdpg.payment.PaymentDTO;
+import ducdpg.products.ProductDAO;
+import ducdpg.products.ProductDTO;
 import ducdpg.shopping.Cart;
+import ducdpg.shopping.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -44,9 +47,9 @@ public class PaymentResultController extends HttpServlet {
             HttpSession session = request.getSession();
             Cart cart = (Cart)session.getAttribute("CHECKOUT");
             ProductDAO pDao = new ProductDAO();
+            OrderDAO oDao = new OrderDAO();
             if (vnp_ResponseCode.equals("00")){
-                OrderDAO dao = new OrderDAO();
-                boolean updateOrder = dao.updateOrder2(vnp_TxnRef, vnp_PayDate, true);
+                boolean updateOrder = oDao.updateOrder(vnp_TxnRef, vnp_PayDate, "SUCCESS");
                 if (updateOrder) 
                     url = SUCCESS;
             } else {
@@ -55,7 +58,9 @@ public class PaymentResultController extends HttpServlet {
                         pDao.refundQuantity(product);
                     }
                 }
-                url = ERROR;
+                if (vnp_ResponseCode.equals("24")) {
+                    boolean updateOrder = oDao.updateOrder(vnp_TxnRef, vnp_PayDate, "CANCELLED");
+                }
             }
         } catch (Exception e) {
             log("Error at PaymentResultController: " + e.toString());

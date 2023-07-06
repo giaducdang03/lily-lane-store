@@ -95,6 +95,9 @@ public class MainController extends HttpServlet {
             else if (PAYMENT.equals(action)) {
                 url = PAYMENT_CONTROLLER;
             }
+            else if (PAYMENT_RESULT.equals(action)) {
+                url = PAYMENT_RESULT_CONTROLLER;
+            }
             else {
                 url = NOT_FOUND;
             } 

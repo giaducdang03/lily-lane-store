@@ -1,6 +1,6 @@
 <%-- 
-    Document   : payment-success
-    Created on : Jul 5, 2023, 9:56:37 PM
+    Document   : payment-failure
+    Created on : Jul 5, 2023, 11:11:36 PM
     Author     : giadu
 --%>
 
@@ -28,11 +28,12 @@
         <link rel="stylesheet" href="./assets/css/styleheader.css">
         <link rel="stylesheet" href="./assets/css/stylefooter.css">
         <!-- custom -->
-        <link rel="stylesheet" href="./assets/css/stylepayment-success.css">
+        <link rel="stylesheet" href="./assets/css/stylepayment-failure.css">
+
 </head>
 
 <body>
-    
+
     <c:import url="header.jsp"></c:import>
 
     <div class="outline">
@@ -41,10 +42,9 @@
                 <div class="col-md-12 pay-header">
                     <h5>PAYMENT INFORMATION</h5>
                 </div>
-
                 <div class="col-md-12 pay-img">
-                    <img src="./assets/img/checkout/success-icon.png" alt="" width="100px">
-                    <h4>Payment success</h4>
+                    <img src="./assets/img/checkout/failure-icon.png" alt="" width="100px">
+                    <h4>Payment failure</h4>
                 </div>
                 <div class="col-md-12 payment-in4">
                     <table>
@@ -71,7 +71,16 @@
                             </tr>
                             <tr>
                                 <th>Transaction ID:</th>
-                                <td>${requestScope.PAYMENT.vnp_TransactionNo}</td>
+                                <td>${requestScope.PAYMENT.vnp_TransactionNo}}</td>
+                            </tr>
+                            <tr>
+                                <th>Error code:</th>
+                                <td class="error-code">
+                                    ${requestScope.PAYMENT.vnp_ResponseCode}
+                                    <c:if test="${requestScope.PAYMENT.vnp_ResponseCode == '24'}">
+                                        You cancelled payment !
+                                    </c:if>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -86,23 +95,23 @@
                         <tbody>
                             <tr>
                                 <th>Billing content:</td>
-                                <td>${requestScope.PAYMENT.vnp_OrderInfo}</td>
+                                <td>${requestScope.ORDER.vnp_OrderInfo}</td>
                             </tr>
                             <tr>
                                 <th>Bank code:</td>
-                                <td>${requestScope.PAYMENT.vnp_BankCode}</td>
+                                <td>${requestScope.ORDER.vnp_BankCode}</td>
                             </tr>
                             <tr>
                                 <th>Payment type:</td>
-                                <td>${requestScope.PAYMENT.vnp_CardType}</td>
+                                <td>${requestScope.ORDER.vnp_CardType}</td>
                             </tr>
                             <tr>
                                 <th>Bank transaction no:</td>
-                                <td>${requestScope.PAYMENT.vnp_BankTranNo}</td>
+                                <td>${requestScope.ORDER.vnp_BankTranNo}</td>
                             </tr>
                             <tr>
                                 <th>Payment date:</td>
-                                <td>${requestScope.PAYMENT.vnp_PayDate}</td>
+                                <td>${requestScope.ORDER.vnp_PayDate}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -111,17 +120,16 @@
                         <p>See you again!</p>
                     </div>
                     <div class="payment-footer">
-                        <p><a href="MainController">Back to home page</a></p>
+                        <p><a href="#">Back to home page</a></p>
                         <p>Powered by <a href="#">VNPAY</a></p>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
-
     <c:import url="footer.jsp"></c:import>
+
 
     <script src="./assets/js/bootstrap/jquery.min.js"></script>
     <script src="./assets/js/bootstrap/popper.min.js"></script>
