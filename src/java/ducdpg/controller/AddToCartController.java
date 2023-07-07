@@ -52,52 +52,19 @@ public class AddToCartController extends HttpServlet {
             session.setAttribute("CART", cart);
             // url = SUCCESS;
            
-            MessageDTO message = new MessageDTO("success", "My cart", IconMessage.SUCCESS, "Add " + quantity + " " + buyProduct.getName() + " successfully.");
+//            MessageDTO message = new MessageDTO("success", "My cart", IconMessage.SUCCESS, "Add " + quantity + " " + buyProduct.getName() + " successfully.");
             PrintWriter out = response.getWriter();
-//            JsonObject json = new JsonObject();
-//            json.addProperty("message", "Success");
-//            out.print(json.toString());
 
-              out.print("abc");
-        
-            // request.setAttribute("MESSAGE", message);
+              out.print("Add " + quantity + " " + buyProduct.getName() + " successfully.");
+              
         } catch (Exception e){
             log("Error at AddToCartController: " + e.toString());
-            MessageDTO message = new MessageDTO("error", "My cart", IconMessage.ERROR, "Somethings error.");
-            request.setAttribute("MESSAGE", message);
+            PrintWriter out = response.getWriter();
+            out.print("Somethings error");
         } finally {
 //            request.getRequestDispatcher(url).forward(request, response);
         }
-//        response.setContentType("application/json");
-//        PrintWriter out = response.getWriter();
-//        JsonObject jsonResponse = new JsonObject();
-//        
-//        try {
-//            String productID = request.getParameter("productID");
-//            int quantity = 1;
-//            ProductDAO dao = new ProductDAO();
-//            ProductDTO buyProduct = dao.getBuyProduct(productID, quantity);
-//            HttpSession session = request.getSession();
-//            Cart cart = (Cart) session.getAttribute("CART");
-//            if (cart == null){
-//                cart = new Cart();
-//            }
-//            cart.add(productID, buyProduct);
-//            session.setAttribute("CART", cart);
-//            System.out.println(buyProduct);
-//            
-//            jsonResponse.addProperty("status", "success");
-//            jsonResponse.addProperty("message", "Add " + quantity + " " + buyProduct.getName() + " successfully.");
-//        } catch (Exception e){
-//            log("Error at AddToCartController: " + e.toString());
-//            jsonResponse.addProperty("status", "error");
-//            jsonResponse.addProperty("message", "Something went wrong.");
-//        }
-//        
-//        Gson gson = new Gson();
-//        String json = gson.toJson(jsonResponse);
-//        out.print(json);
-//        out.flush();
+        
     }
      
 
