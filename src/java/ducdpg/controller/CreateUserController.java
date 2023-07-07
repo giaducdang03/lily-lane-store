@@ -43,8 +43,8 @@ public class CreateUserController extends HttpServlet {
             String password = request.getParameter("password");
             String confirm = request.getParameter("confirm");
             String email = request.getParameter("email");
-            if (userID.length()<2 || userID.length() > 10){
-                userError.setUserIDError("UserID must be 2 - 10 characters");
+            if (userID.length()<2 || userID.length() > 20){
+                userError.setUserIDError("UserID must be 2 - 20 characters");
                 checkValidation = false;
             }
             if (fullName.length() < 5 || fullName.length() > 40){

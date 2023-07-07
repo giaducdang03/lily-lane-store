@@ -32,13 +32,16 @@
         }
     }
 
+//    function forgot_pass() {
+//        var forgot = document.getElementById('forgot-pass');
+//        var show = document.getElementById('popup');
+//
+//        if (forgot) {
+//            show.style.display = 'block';
+//        }
+//    }
     function forgot_pass() {
-        var forgot = document.getElementById('forgot-pass');
-        var show = document.getElementById('popup');
-
-        if (forgot) {
-            show.style.display = 'block';
-        }
+        alert('Function not avaiable.');
     }
 
     function hide() {

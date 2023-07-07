@@ -162,25 +162,6 @@
             <c:import url="toast.jsp"></c:import>
         </c:if>
 
-        <div class="pop-up" id="popup">
-            <a href="#" onclick="hide()" id="close"><i class="fa fa-close" style="font-size:32px"></i></a>
-            <h2>Forgot Password</h2>
-
-            <p style="text-align: start;">Email</p>
-            <input type="" placeholder="Username" required="" id="username" style="border: 2px solid black; width: 81%;">
-            <span class="user"
-                  style="background-color: yellow; border: 2px solid black; padding: 6px 15px; border-radius: 5px;">
-                <i class="fa fa-paper-plane" aria-hidden="true"></i>
-            </span>
-
-            <p>Mã xác nhận (được gửi về Email)</p>
-            <input type="" placeholder="Username" required="" id="username" style="border: 2px solid black;">
-            <p style="margin-top: 0; margin-bottom: 10px;">Bạn vẫn chưa nhận được mã? <span
-                    style="color:rgb(255,139,139);">Gửi lại</span></p>
-
-            <input type="submit" value="SEND">
-        </div>
-
         <c:import url="footer.jsp"></c:import>
 
 
@@ -188,13 +169,13 @@
         <script src="assets/js/bootstrap/popper.min.js"></script>
         <script src="assets/js/bootstrap/bootstrap.min.js"></script>
         <script src="./assets/js/login.js"></script>
-        <script src="./assets/js/saveInfo.js"></script>
+        <script defer="" src="./assets/js/saveInfo.js"></script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"async defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
         <script>
             $(document).ready(function() {
-                $('.toast').toast({delay: 5000});
+                $('.toast').toast({delay: 3000});
                 $('.toast').toast('show');
             });
         </script>

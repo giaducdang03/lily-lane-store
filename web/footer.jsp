@@ -25,10 +25,10 @@
                     <li><i class="fa-solid fa-phone"></i> 0989 899 998</li>
                 </ul>
                 <div class="icon">
-                    <a href="#"><i class="fa-brands fa-square-facebook  fa-2x" style="color: #807171;"></i></a>
+                    <a href="https://www.facebook.com/dang.giaduc03" target="_blank"><i class="fa-brands fa-square-facebook  fa-2x" style="color: #807171;"></i></a>
                     <a href="#"><i class="fa-brands fa-square-youtube  fa-2x" style="color: #807171;"></i></a>
                     <a href="#"><i class="fa-brands fa-square-twitter  fa-2x" style="color: #807171;"></i></a>
-                    <a href="#"><i class="fa-brands fa-square-instagram  fa-2x" style="color: #807171;"></i></a>
+                    <a href="https://www.instagram.com/giaducdang/" target="_blank"><i class="fa-brands fa-square-instagram  fa-2x" style="color: #807171;"></i></a>
                 </div>
             </div>
             <div class="col-md-2">
@@ -49,8 +49,7 @@
             </div>
         </div>
         <div class="row footer_bottom">
-            <span>Copyright &copy; 2023 All rights reserved | <span style="font-weight: bold;">Lily
-                    Lane</span></span>
+            <span>Copyright &copy; 2023 All rights reserved | <span style="font-weight: bold;">Lily Lane</span></span>
         </div>
     </div>
 </div>

@@ -1,6 +1,9 @@
 /* footer  */
 
 .footer {
+    margin-top: 50px;
+    clear: right;
+    clear: left;
     background-color: #ffe2e2;
     color: black;
     padding: 20px 0;

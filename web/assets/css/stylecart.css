@@ -47,7 +47,7 @@
 
 .background-container {
     /* background-color: #f4f4f4; */
-    min-height: 900px;
+    /*min-height: 900px;*/
 }
 
 
@@ -162,6 +162,7 @@ td {
     margin: 0 auto;
     margin: 0;
     float: right;
+    margin-bottom: 50px;
 }
 
 

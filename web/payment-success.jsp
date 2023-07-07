@@ -138,7 +138,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('.toast').toast({delay: 5000});
+            $('.toast').toast({delay: 3000});
             $('.toast').toast('show');
         });
     </script>

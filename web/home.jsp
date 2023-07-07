@@ -119,9 +119,9 @@
         </div>
         <div>
             <div class="best-seller-product">
-            <c:if test="${sessionScope.listP != null}">
-                <c:if test="${not empty sessionScope.listP}">
-                    <c:forEach var="pro" items="${sessionScope.listP}">
+            <c:if test="${requestScope.listP != null}">
+                <c:if test="${not empty requestScope.listP}">
+                    <c:forEach var="pro" items="${requestScope.listP}">
                         <div class="best-seller-product-list">
                             <div class="hot-sale">HOT</div>
                             <form id="form">
@@ -143,7 +143,7 @@
                     </c:forEach>
                 </c:if>
             </c:if>
-            <c:if test="${sessionScope.listP == null}">
+            <c:if test="${requestScope.listP == null}">
                 <h3 style="color: red">Sold Out.</h3>
             </c:if>
                 

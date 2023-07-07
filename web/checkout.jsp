@@ -146,17 +146,19 @@
                                                             </tr>
                                                         
                                                     </c:forEach>
-                                                    <tr class="back-to-cart"> 
-                                                        <td><a href="MainController?action=ViewCart"><i class="fa-solid fa-arrow-left-long"></i> Back to Cart</a></td>
-                                                    </tr>
+                                                    
                                                 </tbody>
                                             </table>
+                                            
                                         </c:if>
                                     </div>
 
                                 </div>
                             </div>
                         </form>
+                        <div class="back-to-cart">
+                            <a href="MainController?action=ViewCart"><i class="fa-solid fa-arrow-left-long"></i> Back to Cart</a>
+                        </div>
                     </div>
                 </div>
             </c:if>
@@ -262,18 +264,14 @@
                                                         <td><fmt:formatNumber value="${entry.value.price * entry.value.quantity}" pattern="#,###" /></td>
                                                     </tr>
                                                 </c:forEach>
-
-
-                                                <tr class="back-to-cart"> 
-                                                    <td><a href="MainController?action=ViewCart"><i class="fa-solid fa-arrow-left-long"></i> Back to Cart</a></td>
-                                                </tr>
                                             </tbody>
                                         </table>
+                                        
                                     </c:if>
                                 </div>
 
                                 <div>
-                                    <table class="table-checkout">
+                                    <table class="table-checkout" style="margin-bottom: 50px;">
                                         <thead>
                                         <td colspan="2" class="title">
                                             Payment Method
@@ -344,6 +342,9 @@
                             </div>
                         </div>
                     </form>
+                    <div class="back-to-cart">
+                        <a href="MainController?action=ViewCart"><i class="fa-solid fa-arrow-left-long"></i> Back to Cart</a>
+                    </div>
                 </div>
             </div>
             </c:if>
@@ -357,7 +358,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
         <script>
             $(document).ready(function () {
-                $('.toast').toast({delay: 5000});
+                $('.toast').toast({delay: 3000});
                 $('.toast').toast('show');
             });
         </script>

@@ -38,7 +38,7 @@ public class HomeController extends HttpServlet {
             ProductDAO dao = new ProductDAO();
             list = dao.getListProduct();
             if (list.size() > 0){
-                session.setAttribute("listP", list);
+                request.setAttribute("listP", list);
             }
         } catch (Exception e){
             log("Error at HomeController: " + e.toString());

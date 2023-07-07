@@ -64,7 +64,7 @@
                         <li style="list-style-type: none;" class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa-solid fa-user"></i> ${sessionScope.LOGIN_USER.fullName}
+                                <i class="fa-solid fa-user"></i> ${sessionScope.LOGIN_USER.userID}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <c:if test="${sessionScope.LOGIN_USER.roleID == 'AD'}">

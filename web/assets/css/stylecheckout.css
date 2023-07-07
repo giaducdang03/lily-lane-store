@@ -5,6 +5,10 @@
 
 }
 
+body {
+    background-color: #f4f4f4;
+}
+
 .banner {
     height: 400px;
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(../img/checkout/banner.webp);
@@ -47,7 +51,6 @@
 
 .background-container {
     background-color: #f4f4f4;
-    min-height: 100vh;
 }
 
 
@@ -120,6 +123,12 @@ td {
 .table-cart .quantity input {
     text-align: center;
     width: 60px;
+}
+
+.back-to-cart {
+    clear: left;
+    /*position: relative;*/
+    bottom: 45px;
 }
 
 .table-cart .back-to-cart td {

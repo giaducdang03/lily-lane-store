@@ -44,7 +44,8 @@ public class LoginController extends HttpServlet {
                 UserDTO loginUser = dao.checkLogin(userID, password);
 
                 if (loginUser == null) {
-                    request.setAttribute("MESSAGE", "Incorrect User ID or Password.");
+                    request.setAttribute("ERROR", "Incorrect User ID or Password.");
+                    request.setAttribute("TYPE", "left");
                     url = LOGIN_PAGE;
                 } else {
                     session.setAttribute("LOGIN_USER", loginUser);
@@ -59,7 +60,8 @@ public class LoginController extends HttpServlet {
                             url = HOME_PAGE;
                         }
                     } else {
-                         request.setAttribute("MESSAGE", "Your role is not support.");
+                        request.setAttribute("MESSAGE", "Your role is not support.");
+                        request.setAttribute("TYPE", "left");
                         url = LOGIN_PAGE;
                     }
 

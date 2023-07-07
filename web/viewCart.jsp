@@ -141,7 +141,7 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2" class="buy-more">
-                                            <input type="submit" value="BUY MORE">
+                                            <input type="submit" name="" value="BUY MORE"/>
                                         </td>
                                     </tr>
                                 </form>
@@ -170,7 +170,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('.toast').toast({delay: 5000});
+            $('.toast').toast({delay: 3000});
             $('.toast').toast('show');
         });
     </script>
