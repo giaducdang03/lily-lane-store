@@ -1,0 +1,123 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+
+}
+
+.content {
+    min-height: 100vh;
+    width: 90%;
+}
+
+.banner {
+    height: 400px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(../img/checkout/banner.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-text {
+    text-align: center;
+}
+
+.banner-text h4 {
+    color: #FF6B6B;
+    font-size: 26px;
+}
+
+.banner-text h1 {
+    color: #fff;
+    font-size: 45px;
+}
+
+
+.title-page {
+    margin-top: 20px;
+}
+
+.title-page h4 {
+    font-size: 20px;
+}
+
+.title-page a {
+    font-size: 20px;
+    color: #FF6B6B;
+}
+
+.content h5 {
+    color: #ff6b6b;
+}
+
+.website {
+    line-height: 32px;
+}
+
+.web-project {
+    margin-top: 50px;
+}
+
+.website {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.website img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    /* animation-name: spin; */
+    /* animation-duration: 50000ms; */
+
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+/* .img-mockup img {
+    border-radius: 50%;
+    width: 100%;
+} */
+
+.design {
+    display: flex;
+    align-items: center;
+}
+
+.front-end {
+    display: flex;
+    align-items: center;
+}
+
+.technology {
+    display: flex;
+    align-items: center;
+}
+
+.main {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.main ul {
+    padding-left: 20px;
+}
+
+.footer {
+    margin-top: 53px;
+}
