@@ -157,14 +157,12 @@ public class ProductDAO {
         PreparedStatement ptm = null;
         try {
             product = getBuyProductByID(cart.getID());
-            if (product.getQuantity() >= cart.getQuantity()) {
-                int newQuantity = product.getQuantity() + cart.getQuantity();
-                conn = DBUtils.getConnection();
-                ptm = conn.prepareStatement(UPDATE_QUANTITY);
-                ptm.setInt(1, newQuantity);
-                ptm.setString(2, product.getID());
-                ptm.executeUpdate();
-            }
+            int newQuantity = product.getQuantity() + cart.getQuantity();
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(UPDATE_QUANTITY);
+            ptm.setInt(1, newQuantity);
+            ptm.setString(2, product.getID());
+            ptm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

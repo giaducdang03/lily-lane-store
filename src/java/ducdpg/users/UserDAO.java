@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.naming.NamingException;
 
 /**
  *
@@ -159,7 +160,7 @@ public class UserDAO {
         return check;
     }
     
-    public boolean insert(UserDTO newUser) throws SQLException, ClassNotFoundException {
+    public boolean insert(UserDTO newUser) throws SQLException, ClassNotFoundException, NamingException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -213,7 +214,7 @@ public class UserDAO {
         return user;
     }
 
-    public boolean insertGoogle(UserDTO newUser) throws ClassNotFoundException, SQLException {
+    public boolean insertGoogle(UserDTO newUser) throws ClassNotFoundException, SQLException, NamingException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;

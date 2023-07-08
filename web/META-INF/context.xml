@@ -1,2 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/LiLyLaneStore"/>
+<Context path="/LiLyLaneStore">
+    <Resource name= "DBCon" auth="Container"
+              username="sa" password="12345"
+              driverClassName ="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+              type = "javax.sql.DataSource"
+              url ="jdbc:sqlserver://localhost:1433;databaseName=Assignment_PRJ301">
+    </Resource>
+</Context>
