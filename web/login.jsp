@@ -19,8 +19,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400&display=swap"
               rel="stylesheet">
         <!-- boostrap -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/font/css/all.css">
+        <link rel="stylesheet" href="./assets/css/bootstrap.min/bootstrap.min.css">
+        <link rel="stylesheet" href="./assets/css/font/css/all.css">
         <link rel="stylesheet" href="./assets/css/styleheader.css">
         <link rel="stylesheet" href="./assets/css/stylefooter.css">
         <link rel="stylesheet" href="./assets/css/toastMessage.css">
@@ -165,9 +165,9 @@
         <c:import url="footer.jsp"></c:import>
 
 
-        <script src="assets/js/bootstrap/jquery.min.js"></script>
-        <script src="assets/js/bootstrap/popper.min.js"></script>
-        <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+        <script src="./assets/js/bootstrap/jquery.min.js"></script>
+        <script src="./assets/js/bootstrap/popper.min.js"></script>
+        <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
         <script src="./assets/js/login.js"></script>
         <script defer="" src="./assets/js/saveInfo.js"></script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>

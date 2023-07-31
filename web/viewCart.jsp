@@ -32,8 +32,9 @@
     </head>
 
     <body>
+        
         <c:import url="header.jsp"></c:import>
-
+        
         <c:if test="${sessionScope.CART == null}">
             <c:import url="cartNull.jsp"></c:import>
         </c:if>
@@ -136,7 +137,7 @@
                                 <form action="MainController" method="POST">
                                     <tr>
                                         <td colspan="2" class="check-out">
-                                            <input type="submit" name="action" value="CHECKOUT"/>
+                                            <input onclick="showToast()" type="submit" name="action" value="CHECKOUT"/>
                                         </td>
                                     </tr>
                                     <tr>
@@ -156,7 +157,7 @@
             </div>
         </c:if>
     </c:if>
-        
+    
     <c:if test="${requestScope.MESSAGE != null}">
         <c:import url="toast.jsp"></c:import>
     </c:if>

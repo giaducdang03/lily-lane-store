@@ -65,7 +65,7 @@ public class PaymentResultController extends HttpServlet {
             String billEmail = BillEmail.billEmail(vnp_TxnRef, userName, userAddr, userEmail, payment_method, payment_date, amount_paid);
             //--------------------
             if (vnp_ResponseCode.equals("00")){
-                boolean updateOrder = oDao.updateOrder(vnp_TxnRef, vnp_PayDate, "SUCCESS");
+                boolean updateOrder = oDao.updateOrder(vnp_TxnRef, vnp_PayDate, "COMPLETED");
                 boolean sendMail = Email.sendEmail(userEmail, "Invoice #"+vnp_TxnRef, billEmail);
                 if (updateOrder) {
                     if (!sendMail){

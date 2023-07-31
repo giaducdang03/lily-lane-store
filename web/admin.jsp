@@ -65,6 +65,39 @@
                         <a href="#"><i class="fa-solid fa-bell"></i></a>
                     </div>
                 </nav>
+                </div>
+                <div class="bell col-md-1">
+                    <a href="#"><i class="fa-solid fa-bell"></i></a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="body-main">
+        <div class="row" style="margin: 0px;">
+            <div class="left-bar col-md-2">
+                <div class="service">
+                    <ul class="list-service">
+                        <a href="#">
+                            <li><i class="fa-solid fa-chart-line"></i> Dashboard</li>
+                        </a>
+                        <a href="#">
+                            <li><i class="fa-regular fa-user"></i> User </li>
+                        </a>
+                        <a href="#">
+                            <li><i class="fa-solid fa-bars-progress"></i> Product</li>
+                        </a>
+                        <a href="MainController?action=Order">
+                            <li><i class="fa-solid fa-file-invoice"></i> Order </li>
+                        </a>
+                        <c:url var="logoutLink" value="MainController">
+                            <c:param name="action" value="Logout"></c:param>
+                        </c:url>
+                        <a href="${logoutLink}">
+                            <li><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
+                        </a>
+                    </ul>
+                </div>
             </div>
         </div>
 

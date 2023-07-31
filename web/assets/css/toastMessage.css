@@ -7,13 +7,14 @@
 }
 
 #toast-id {
-    display: flex;
+/*    display: flex;*/
     border-top: none;
     border-bottom: none;
     border-right: none;
 }
 
 .toast{
+    display: flex;
     height: 75px;
     min-width: 400px;
     max-width: 450px;
@@ -23,6 +24,10 @@
     border-left: 4px solid;
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
     transition: all linear 0.3s;
+}
+
+.toast.show {
+    display: flex;
 }
 @keyframes slideInleft{
     from {

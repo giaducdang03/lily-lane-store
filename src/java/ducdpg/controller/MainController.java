@@ -27,7 +27,7 @@ public class MainController extends HttpServlet {
     private static final String CREATE_USER_CONTROLLER = "CreateUserController";
     private static final String LOGOUT = "Logout";
     private static final String LOGOUT_CONTROLLER = "LogoutController";
-    // admin role
+    // admin
     private static final String SEARCH = "Search";
     private static final String SEARCH_USER_CONTROLLER = "SearchUserController";
     private static final String UPDATE_USER = "Update";
@@ -36,6 +36,12 @@ public class MainController extends HttpServlet {
     private static final String DELETE_USER_CONTROLLER = "DeleteUserController";
     private static final String ADD_USER = "AddUser";
     private static final String ADD_USER_CONTROLLER = "AddUserController";
+    private static final String ORDER_MANAGER = "Order";
+    private static final String ORDER_MANAGER_CONTROLLER = "OrderManagerController";
+    private static final String ORDER_SEARCH = "OrderSearch";
+    private static final String ORDER_SEARCH_CONTROLLER = "OrderSearchController";
+    private static final String ORDER_UPDATE = "UpdateStatusOrder";
+    private static final String ORDER_UPDATE_CONTROLLER = "OrderUpdateController";
     // shopping
     private static final String ADD_TO_CART = "ADD TO CART";
     private static final String ADD_TO_CART_CONTROLLER = "AddToCartController";
@@ -71,6 +77,7 @@ public class MainController extends HttpServlet {
             else if (LOGOUT.equals(action)) {
                 url = LOGOUT_CONTROLLER;
             } 
+            // for admin
             else if (SEARCH.equals(action)) {
                 url = SEARCH_USER_CONTROLLER;
             }
@@ -80,6 +87,16 @@ public class MainController extends HttpServlet {
             else if (DELETE_USER.equals(action)) {
                 url = DELETE_USER_CONTROLLER;
             }
+            else if (ORDER_MANAGER.equals(action)) {
+                url = ORDER_MANAGER_CONTROLLER;
+            }
+            else if (ORDER_SEARCH.equals(action)) {
+                url = ORDER_SEARCH_CONTROLLER;
+            }
+            else if (ORDER_UPDATE.equals(action)) {
+                url = ORDER_UPDATE_CONTROLLER;
+            }
+            // for user
             else if (ADD_TO_CART.equals(action)) {
                 url = ADD_TO_CART_CONTROLLER;
             }

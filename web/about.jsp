@@ -148,7 +148,7 @@
                                     <li>Login use Google account</li>
                                     <li>reCAPTCHA for Register</li>
                                     <li>Use FETCH for add to cart</li>
-                                    <li>Payment with <a href="https://vnpay.vn/">VNPAY</a></li>
+                                    <li>Payment with <a href="https://vnpay.vn/" target="_blank">VNPAY</a></li>
                                     <li>Send bill via email customer</li>
                                 </ul>
                             </div>
