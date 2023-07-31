@@ -27,12 +27,15 @@ public class MainController extends HttpServlet {
     private static final String CREATE_USER_CONTROLLER = "CreateUserController";
     private static final String LOGOUT = "Logout";
     private static final String LOGOUT_CONTROLLER = "LogoutController";
+    // admin role
     private static final String SEARCH = "Search";
     private static final String SEARCH_USER_CONTROLLER = "SearchUserController";
     private static final String UPDATE_USER = "Update";
     private static final String UPDATE_USER_CONTROLLER = "UpdateUserController";
     private static final String DELETE_USER = "Delete";
     private static final String DELETE_USER_CONTROLLER = "DeleteUserController";
+    private static final String ADD_USER = "AddUser";
+    private static final String ADD_USER_CONTROLLER = "AddUserController";
     // shopping
     private static final String ADD_TO_CART = "ADD TO CART";
     private static final String ADD_TO_CART_CONTROLLER = "AddToCartController";
