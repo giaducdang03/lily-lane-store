@@ -77,10 +77,13 @@
                             <li><i class="fa-solid fa-chart-line"></i> Dashboard</li>
                         </a>
                         <a href="#">
-                            <li><i class="fa-regular fa-user"></i> Manager User </li>
+                            <li><i class="fa-regular fa-user"></i> User </li>
                         </a>
                         <a href="#">
-                            <li><i class="fa-solid fa-bars-progress"></i> Manager Product</li>
+                            <li><i class="fa-solid fa-bars-progress"></i> Product</li>
+                        </a>
+                        <a href="MainController?action=Order">
+                            <li><i class="fa-solid fa-file-invoice"></i> Order </li>
                         </a>
                         <c:url var="logoutLink" value="MainController">
                             <c:param name="action" value="Logout"></c:param>
