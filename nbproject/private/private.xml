@@ -3,7 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/F:/FPTU/PRJ301/Project2/LilyLaneStore/web/bill-manager.jsp</file>
+            <file>file:/F:/FPTU/PRJ301/Project2/LilyLaneStore/src/java/ducdpg/controller/AddUserController.java</file>
+            <file>file:/F:/FPTU/PRJ301/Project2/LilyLaneStore/src/java/ducdpg/controller/MainController.java</file>
+            <file>file:/F:/FPTU/PRJ301/Project2/LilyLaneStore/src/java/ducdpg/controller/SearchUserController.java</file>
+            <file>file:/F:/FPTU/PRJ301/Project2/LilyLaneStore/web/adminAccount.jsp</file>
             <file>file:/F:/FPTU/PRJ301/Project2/LilyLaneStore/web/admin.jsp</file>
+            <file>file:/F:/FPTU/PRJ301/Project2/LilyLaneStore/src/java/ducdpg/users/UserDAO.java</file>
+            <file>file:/F:/FPTU/PRJ301/Project2/LilyLaneStore/src/java/ducdpg/controller/UserManagerController.java</file>
+            <file>file:/F:/FPTU/PRJ301/Project2/LilyLaneStore/web/login.jsp</file>
+            <file>file:/F:/FPTU/PRJ301/Project2/LilyLaneStore/src/java/ducdpg/users/UserDTO.java</file>
         </group>
     </open-files>
 </project-private>

@@ -7,6 +7,8 @@ package ducdpg.controller;
 
 import ducdpg.message.IconMessage;
 import ducdpg.message.MessageDTO;
+import ducdpg.shopping.OrderDAO;
+import ducdpg.shopping.OrderDTO;
 import ducdpg.users.UserDAO;
 import ducdpg.users.UserDTO;
 import java.io.IOException;
@@ -22,8 +24,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author giadu
  */
-@WebServlet(name = "SearchUserController", urlPatterns = {"/SearchUserController"})
-public class SearchUserController extends HttpServlet {
+@WebServlet(name = "UserManagerController", urlPatterns = {"/UserManagerController"})
+public class UserManagerController extends HttpServlet {
     private static final String ERROR = "admin.jsp";
     private static final String SUCCESS = "admin.jsp";
     
@@ -32,19 +34,17 @@ public class SearchUserController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String search = request.getParameter("search");
             UserDAO dao = new UserDAO();
-            List<UserDTO> list = dao.getListUser(search);
-            if (list.size() > 0){
-                request.setAttribute("LIST_USER", list);
+            List<UserDTO> listUser = dao.getAllUser();
+            if (listUser.size() > 0){
+                request.setAttribute("LIST_USER", listUser);
                 url = SUCCESS;
             } else {
-                MessageDTO message = new MessageDTO("error", "Manager", IconMessage.ERROR, "User does not exist.");
+                MessageDTO message = new MessageDTO("error", "Manager", IconMessage.ERROR, "Somethings Error. Try again!");
                 request.setAttribute("MESSAGE", message);
             }
-           
-        } catch (Exception e){
-            log("Error at SearchUserController: " + e.toString());
+        } catch (Exception e) {
+            log("Error at OrderManagerController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

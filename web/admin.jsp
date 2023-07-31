@@ -52,9 +52,16 @@
                     </div>
                     <div class="right-nav col-md-2">
                         <div class="account">
+                            <c:if test="${not empty sessionScope.LOGIN_USER.avatar}">
                             <div class="logo-admin">
-                                <img src="./assets/img/admin/avt-admin.png" alt="" width="60px">
+                                <img style="border-radius: 50%" src="${LOGIN_USER.avatar}" alt="" width="60px">
                             </div>
+                            </c:if>
+                            <c:if test="${empty sessionScope.LOGIN_USER.avatar}">
+                                <div class="logo-admin">
+                                    <img src="./assets/img/admin/avt-admin.png" alt="" width="60px">
+                                </div>
+                            </c:if>
                             <div class="admin-text">
                                 <p>ADMIN</p>
                                 <p>${sessionScope.LOGIN_USER.fullName}</p>
@@ -65,39 +72,6 @@
                         <a href="#"><i class="fa-solid fa-bell"></i></a>
                     </div>
                 </nav>
-                </div>
-                <div class="bell col-md-1">
-                    <a href="#"><i class="fa-solid fa-bell"></i></a>
-                </div>
-            </nav>
-        </div>
-    </div>
-
-    <div class="body-main">
-        <div class="row" style="margin: 0px;">
-            <div class="left-bar col-md-2">
-                <div class="service">
-                    <ul class="list-service">
-                        <a href="#">
-                            <li><i class="fa-solid fa-chart-line"></i> Dashboard</li>
-                        </a>
-                        <a href="#">
-                            <li><i class="fa-regular fa-user"></i> User </li>
-                        </a>
-                        <a href="#">
-                            <li><i class="fa-solid fa-bars-progress"></i> Product</li>
-                        </a>
-                        <a href="MainController?action=Order">
-                            <li><i class="fa-solid fa-file-invoice"></i> Order </li>
-                        </a>
-                        <c:url var="logoutLink" value="MainController">
-                            <c:param name="action" value="Logout"></c:param>
-                        </c:url>
-                        <a href="${logoutLink}">
-                            <li><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
-                        </a>
-                    </ul>
-                </div>
             </div>
         </div>
 
@@ -109,11 +83,17 @@
                             <a href="#">
                                 <li><i class="fa-solid fa-chart-line"></i> Dashboard</li>
                             </a>
-                            <a href="#">
+                            <a href="MainController?action=ViewAdminAccount">
+                                <li><i class="fa-solid fa-user"></i> My account </li>
+                            </a>
+                            <a href="MainController?action=Admin">
                                 <li><i class="fa-regular fa-user"></i> Manager User </li>
                             </a>
                             <a href="#">
                                 <li><i class="fa-solid fa-bars-progress"></i> Manager Product</li>
+                            </a>
+                            <a href="MainController?action=Order">
+                                <li><i class="fa-solid fa-file-invoice"></i> Order </li>
                             </a>
                             <c:url var="logoutLink" value="MainController">
                                 <c:param name="action" value="Logout"></c:param>
@@ -124,7 +104,6 @@
                         </ul>
                     </div>
                 </div>
-
                 <div class="right-bar col-md-10" style="  background-color: #f2f6fa;">
                     <div class="info">
                         <p>Manager User</p>
@@ -132,7 +111,7 @@
                     <div class="control-add-user">
                         <form action="MainController">
                             <div class="add-user">
-                                <button onclick="showAddModal()" type="button" data-toggle="modal" data-target="#addUserModal">+ Add User</button>
+                                <button onclick="showAddModal()" type="button">+ Add User</button>
                             </div>
                         </form>
                     </div>
@@ -141,7 +120,7 @@
                         <div>
                             <form action="MainController">
                                 <input type="text" name="search" placeholder="Search user" value="${param.search}"/>
-                                <input type="submit" name="action" id="" value="Search">
+                                <input type="submit" name="action" id="" value="Search"/>
                             </form>
                         </div>
                     </div>          
@@ -243,25 +222,26 @@
                             <span aria-hidden="true"><i class="fa-solid fa-times"></i></span>
                         </button>
                     </div>
+                    <form action="MainController" method="POST">
                     <div class="modal-body">
-                        <form>
+                        
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <label for="inputUserID">User ID</label>
-                                    <input type="text" class="form-control" id="inputUserID" placeholder="Enter user ID" required>
-                                    <p class="mess-error">User is already exist</p>
+                                    <input type="text" class="form-control" id="inputUserID" name="userID" placeholder="Enter user ID" required>
+                                    <p class="mess-error">${requestScope.USER_ERROR.userIDError}</p>
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="inputUserAvt">Link avatar</label>
-                                    <input type="text" class="form-control" id="inputUserAvt" placeholder="Link avatar">
+                                    <input type="url" class="form-control" id="inputUserAvt" name="avt" placeholder="Link avatar">
                                     <p class="mess-error"></p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputFullName">Full name</label>
-                                <input type="text" class="form-control" id="inputFullName" placeholder="Enter full name" required>
-                                <p class="mess-error"></p>
+                                <input type="text" class="form-control" id="inputFullName" name="fullName" placeholder="Enter full name" required>
+                                <p class="mess-error">${requestScope.USER_ERROR.fullNameError}</p>
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword">Password</label>
@@ -270,56 +250,72 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputRoleID">Role ID</label>
-                                <select class="form-control" id="inputRoleID">
-                                  <option>Admin</option>
-                                  <option>User</option>
+                                <select class="form-control" id="inputRoleID" name="roleID">
+                                    <option value="AD">Admin</option>
+                                    <option value="US">User</option>
                                 </select>
                               </div>
                             <div class="form-group">
                                 <label for="inputEmail">Email</label>
-                                <input type="email" class="form-control" id="inputEmail" placeholder="example: abc@gmail.com">
+                                <input type="email" class="form-control" id="inputEmail" name="email" placeholder="example: abc@gmail.com" required="">
                                 <p class="mess-error"></p>
                             </div>
                             <div class="form-group">
                                 <label for="inputAddress">Address</label>
-                                <input type="text" class="form-control" id="inputAddress" placeholder="Enter address">
+                                <input type="text" class="form-control" id="inputAddress" name="address" placeholder="Enter address" required="">
                                 <p class="mess-error"></p>
                             </div>
-                        </form>
+                            <input type="hidden" name="action" value="AddUser"/>
+                            <input type="hidden" name="search" value="${param.search}"/>
+                        
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="button btn-close" data-dismiss="modal">Close</button>
-                        <button type="button" class="button btn-add">Add</button>
+                        <button onclick="closeAddModal()" type="button" class="button btn-close" data-dismiss="modal">Close</button>
+                        <button type="submit" class="button btn-add">Add</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
+                            
+
+
+        
 
         <script src="./assets/js/bootstrap/jquery.min.js"></script>
         <script src="./assets/js/bootstrap/popper.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+        <c:if test="${requestScope.TYPE == 'add'}">
+            <script>
+                showAddModal();
+            </script>
+        </c:if>
 
         <script>
             $(document).ready(function () {
                 $('.toast').toast({delay: 3000});
                 $('.toast').toast('show');
             });
-            
+             
             function showAddModal() {
                 $("#addUserModal").modal("show");
             }
             
-            function closeModal(){
-                $("#deleteAction").modal("hide");
+            function closeAddModal() {
+                $("#addUserModal").modal("hide");
             }
-
+            
             function handleDelete(user_id) {
                 let formID = "#form-delete-" + user_id;
                 $("#deleteAction").modal("show");
                 $("#delete-button").click(function () {
                     $(formID).submit();
                 })
+            }
+            
+            function closeModal(){
+                $("#deleteAction").modal("hide");
             }
         </script>
 

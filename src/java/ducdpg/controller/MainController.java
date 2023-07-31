@@ -28,6 +28,13 @@ public class MainController extends HttpServlet {
     private static final String LOGOUT = "Logout";
     private static final String LOGOUT_CONTROLLER = "LogoutController";
     // admin
+    private static final String ADMIN = "Admin";
+    private static final String ADMIN_PAGE = "UserManagerController";
+    private static final String ADMIN_ACCOUT = "ViewAdminAccount";
+    private static final String ADMIN_ACCOUT_PAGE = "adminAccount.jsp";
+    
+    private static final String USER_MANAGER = "UserManager";
+    private static final String USER_MANAGER_CONTROLLER = "UserManagerController";
     private static final String SEARCH = "Search";
     private static final String SEARCH_USER_CONTROLLER = "SearchUserController";
     private static final String UPDATE_USER = "Update";
@@ -78,6 +85,15 @@ public class MainController extends HttpServlet {
                 url = LOGOUT_CONTROLLER;
             } 
             // for admin
+            else if (ADMIN.equals(action)) {
+                url = ADMIN_PAGE;
+            }
+            else if (ADMIN_ACCOUT.equals(action)) {
+                url = ADMIN_ACCOUT_PAGE;
+            }
+            else if (USER_MANAGER.equals(action)) {
+                url = USER_MANAGER_CONTROLLER;
+            }
             else if (SEARCH.equals(action)) {
                 url = SEARCH_USER_CONTROLLER;
             }
@@ -86,6 +102,9 @@ public class MainController extends HttpServlet {
             }
             else if (DELETE_USER.equals(action)) {
                 url = DELETE_USER_CONTROLLER;
+            }
+            else if (ADD_USER.equals(action)) {
+                url = ADD_USER_CONTROLLER;
             }
             else if (ORDER_MANAGER.equals(action)) {
                 url = ORDER_MANAGER_CONTROLLER;

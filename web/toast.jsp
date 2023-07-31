@@ -17,7 +17,8 @@
         </div>
 
         <div class="toast_close">
-            <i class="fa-solid fa-xmark"></i>
+            <button type="button" data-bs-dismiss="toast"><i class="fa-solid fa-xmark"></i></button>
+            <!--<i class="fa-solid fa-xmark"></i>-->
         </div>
     </div>
 </div>

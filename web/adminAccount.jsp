@@ -22,76 +22,88 @@
     <!-- boostrap -->
     <link rel="stylesheet" href="./assets/css/bootstrap.min/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/font/css/all.css">
-    <link rel="stylesheet" href="./assets/css/styleuser.css">
+    <link rel="stylesheet" href="./assets/css/adminAccount.css">
 
 </head>
 
 <body>
     <c:if test="${sessionScope.LOGIN_USER == null}">
-        <c:redirect url="MainController"></c:redirect>
-    </c:if>
-    <div class="container-fluid header_main">
-        <div class="container-fluid navbar-content">
-            <nav class="navbar navbar-expand-lg">
-                <div class="logo col-md-2">
-                    <a class="navbar-brand" href="MainController"><img
-                            src="./assets/img/logo/lily-lane-logo-web.png" alt width="100px"></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-                <div class="service col-md-7 collapse navbar-collapse" id="navbarSupportedContent">
-                    <a class="nav-link active" href="#">User Page</a>
+            <c:redirect url="MainController"></c:redirect>
+        </c:if>
+        <c:if test="${requestScope.MESSAGE != null}">
+            <c:import url="toast.jsp"></c:import>
+        </c:if>
+        <div class="container-fluid header_main">
+            <div class="container-fluid navbar-content">
+                <nav class="navbar navbar-expand-lg">
+                    <div class="logo col-md-2">
+                        <a class="navbar-brand" href="MainController"><img
+                                src="./assets/img/logo/lily-lane-logo-web.png" alt width="100px"></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                    <div class="service col-md-7 collapse navbar-collapse" id="navbarSupportedContent">
+                        <a class="nav-link active" href="#">Admin Page</a>
 
 
-                </div>
-                <div class="right-nav col-md-2">
-                    <div class="account">
-                        <c:if test="${not empty sessionScope.LOGIN_USER.avatar}">
+                    </div>
+                    <div class="right-nav col-md-2">
+                        <div class="account">
+                            <c:if test="${not empty sessionScope.LOGIN_USER.avatar}">
                             <div class="logo-admin">
                                 <img style="border-radius: 50%" src="${LOGIN_USER.avatar}" alt="" width="60px">
                             </div>
-                        </c:if>
-                        <c:if test="${empty sessionScope.LOGIN_USER.avatar}">
-                            <div class="logo-admin">
-                                <img src="./assets/img/user/avt-user.png" alt="" width="60px">
+                            </c:if>
+                            <c:if test="${empty sessionScope.LOGIN_USER.avatar}">
+                                <div class="logo-admin">
+                                    <img src="./assets/img/admin/avt-admin.png" alt="" width="60px">
+                                </div>
+                            </c:if>
+                            <div class="admin-text">
+                                <p>ADMIN</p>
+                                <p>${sessionScope.LOGIN_USER.fullName}</p>
                             </div>
-                        </c:if>
-                        <div class="admin-text">
-                            <p>USER</p>
-                            <p>${sessionScope.LOGIN_USER.fullName}</p>
                         </div>
                     </div>
-                </div>
-                <div class="bell col-md-1">
-                    <a href="#"><i class="fa-solid fa-bell"></i></a>
-                </div>
-            </nav>
-        </div>
-    </div>
-
-    <div class="body-main">
-        <div class="row" style="margin: 0px;">
-            <div class="left-bar col-md-2">
-                <div class="service">
-                    <ul class="list-service">
-                        <a href="#">
-                            <li><i class="fa-solid fa-user"></i> Information</li>
-                        </a>
-                        <a href="MainController?action=ViewCart">
-                            <li><i class="fa-solid fa-shopping-cart"></i> My cart </li>
-                        </a>
-                         <c:url var="logoutLink" value="MainController">
-                            <c:param name="action" value="Logout"></c:param>
-                        </c:url>
-                        <a href="${logoutLink}">
-                            <li><i class="fa-solid fa-right-from-bracket"></i> Logout </li>
-                        </a>
-                    </ul>
-                </div>
+                    <div class="bell col-md-1">
+                        <a href="#"><i class="fa-solid fa-bell"></i></a>
+                    </div>
+                </nav>
             </div>
+        </div>
+
+        <div class="body-main">
+            <div class="row" style="margin: 0px;">
+                <div class="left-bar col-md-2">
+                    <div class="service">
+                        <ul class="list-service">
+                            <a href="#">
+                                <li><i class="fa-solid fa-chart-line"></i> Dashboard</li>
+                            </a>
+                            <a href="MainController?action=ViewAdminAccount">
+                                <li><i class="fa-solid fa-user"></i> My account </li>
+                            </a>
+                            <a href="MainController?action=Admin">
+                                <li><i class="fa-regular fa-user"></i> Manager User </li>
+                            </a>
+                            <a href="#">
+                                <li><i class="fa-solid fa-bars-progress"></i> Manager Product</li>
+                            </a>
+                            <a href="MainController?action=Order">
+                                <li><i class="fa-solid fa-file-invoice"></i> Order </li>
+                            </a>
+                            <c:url var="logoutLink" value="MainController">
+                                <c:param name="action" value="Logout"></c:param>
+                            </c:url>
+                            <a href="${logoutLink}">
+                                <li><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
 
             <div class="right-bar col-md-10" style="background-color: #f2f6fa;">
                 <div class="info">

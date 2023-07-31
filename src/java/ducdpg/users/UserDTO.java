@@ -40,6 +40,20 @@ public class UserDTO {
         this.avatar = avatar;
     }
     
+    public UserDTO(String userID, String fullName, String password, String roleID, String address, String email, String avatar) {
+        this.userID = userID;
+        this.fullName = fullName;
+        this.password = password;
+        this.roleID = roleID;
+        this.address = address;
+        this.email = email;
+        if (avatar == null || avatar.isEmpty()) {
+            this.avatar = "";
+        } else {
+            this.avatar = avatar;
+        }
+    }
+    
     public UserDTO(String userID, String fullName, String password, String roleID, String address, String email) {
         this.userID = userID;
         this.fullName = fullName;

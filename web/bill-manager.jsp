@@ -53,9 +53,16 @@
                     </div>
                     <div class="right-nav col-md-2">
                         <div class="account">
+                            <c:if test="${not empty sessionScope.LOGIN_USER.avatar}">
                             <div class="logo-admin">
-                                <img src="./assets/img/admin/avt-admin.png" alt="" width="60px">
+                                <img style="border-radius: 50%" src="${LOGIN_USER.avatar}" alt="" width="60px">
                             </div>
+                            </c:if>
+                            <c:if test="${empty sessionScope.LOGIN_USER.avatar}">
+                                <div class="logo-admin">
+                                    <img src="./assets/img/admin/avt-admin.png" alt="" width="60px">
+                                </div>
+                            </c:if>
                             <div class="admin-text">
                                 <p>ADMIN</p>
                                 <p>${sessionScope.LOGIN_USER.fullName}</p>
@@ -77,11 +84,14 @@
                             <a href="#">
                                 <li><i class="fa-solid fa-chart-line"></i> Dashboard</li>
                             </a>
-                            <a href="admin.jsp">
-                                <li><i class="fa-regular fa-user"></i> User </li>
+                            <a href="MainController?action=ViewAdminAccount">
+                                <li><i class="fa-solid fa-user"></i> My account </li>
+                            </a>
+                            <a href="MainController?action=Admin">
+                                <li><i class="fa-regular fa-user"></i> Manager User </li>
                             </a>
                             <a href="#">
-                                <li><i class="fa-solid fa-bars-progress"></i> Product</li>
+                                <li><i class="fa-solid fa-bars-progress"></i> Manager Product</li>
                             </a>
                             <a href="MainController?action=Order">
                                 <li><i class="fa-solid fa-file-invoice"></i> Order </li>

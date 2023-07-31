@@ -40,7 +40,7 @@
                         </div>
                         <div class="login-type">
                             <div class="inputBox">
-                                <input type="text" name="userID" required="" id="username"/>
+                                <input type="text" name="userID" required="" id="username" value="${param.userID}"/>
                                 <span>UserName</span>
                             </div>
                             <div class="inputBox">
@@ -82,7 +82,7 @@
                         <div class="login-type">
                             <div class="inputBox-signup">
                                 <div class="inputBox">
-                                    <input type="text" name="userID" required=""/>
+                                    <input type="text" name="userID" required="" value="${param.userID}"/>
                                     <span>UserName</span>
                                 </div>
                                 <p class="mess-error">${requestScope.USER_ERROR.userIDError}</p>
@@ -90,7 +90,7 @@
 
                             <div class="inputBox-signup">
                                 <div class="inputBox">
-                                    <input type="text" name="fullName" required=""/>
+                                    <input type="text" name="fullName" required="" value="${param.fullName}"/>
                                     <span>FullName</span>
                                 </div>
                                 <p class="mess-error">${requestScope.USER_ERROR.fullNameError}</p>
@@ -98,7 +98,7 @@
 
                             <div class="inputBox-signup">
                                 <div class="inputBox">
-                                    <input type="email" name="email" required=""/>
+                                    <input type="email" name="email" required="" value="${param.email}"/>
                                     <span>Email</span>
                                 </div>
                                 <p class="mess-error">${requestScope.USER_ERROR.emailError}</p>
