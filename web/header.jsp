@@ -68,7 +68,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <c:if test="${sessionScope.LOGIN_USER.roleID == 'AD'}">
-                                    <a class="dropdown-item" href="admin.jsp">My account</a>
+                                    <a class="dropdown-item" href="MainController?action=Admin">My account</a>
                                 </c:if>
                                 <c:if test="${sessionScope.LOGIN_USER.roleID == 'US'}">
                                     <a class="dropdown-item" href="user.jsp">My account</a>

@@ -21,16 +21,19 @@ import javax.naming.NamingException;
 public class UserDAO {
 //    Default
     
-    private static final String LOGIN = "SELECT fullName, roleID, address, email "
+    private static final String LOGIN = "SELECT fullName, roleID, address, email, avatar, status "
             + "FROM tblUsers "
             + "WHERE userID=? AND password=?";
-    private static final String SEARCH = "SELECT userID, fullName, roleID, address, email "
+    private static final String SEARCH = "SELECT userID, fullName, roleID, address, email, status "
             + "FROM tblUsers "
             + "WHERE fullName like ?";
+    private static final String GET_ALL_USER = "SELECT userID, fullName, roleID, address, email, status FROM tblUsers";
     private static final String UPDATE = "UPDATE tblUsers SET fullName=?, roleID=? WHERE userID=?";
     private static final String DELETE = "DELETE tblUsers WHERE userID=?";
     private static final String ADD_USER = "INSERT INTO tblUsers (userID, fullName, roleID, password, email, status) "
             + "VALUES(?,?,?,?,?,?)";
+    private static final String ADD_USER_FULL = "INSERT INTO tblUsers (userID, fullName, roleID, password, email, address, avatar, status) "
+            + "VALUES(?,?,?,?,?,?,?,?)";
     private static final String UPDATE_ADDRESS = "UPDATE tblUsers SET address=? WHERE userID=?";
     
 //    Google
@@ -56,7 +59,11 @@ public class UserDAO {
                 String roleID = rs.getString("roleID");
                 String address = rs.getString("address");
                 String email = rs.getString("email");
-                user = new UserDTO(userID, fullName, password, roleID, address, email);
+                String avatar = rs.getString("avatar");
+                boolean status = rs.getBoolean("status");
+                if (status) {
+                    user = new UserDTO(userID, fullName, password, roleID, address, email, avatar);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,6 +73,37 @@ public class UserDAO {
             if (conn != null) conn.close();
         }
         return user;
+    }
+    
+    public List<UserDTO> getAllUser() throws SQLException {
+        List<UserDTO> listUser = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(GET_ALL_USER);
+            rs = ptm.executeQuery();
+            while (rs.next()){
+                String userID = rs.getString("userID");
+                String fullName = rs.getString("fullName");
+                String password = "***";
+                String roleID = rs.getString("roleID");
+                String address = rs.getString("address");
+                String email = rs.getString("email");
+                boolean status = rs.getBoolean("status");
+                if (status){
+                    listUser.add(new UserDTO(userID, fullName, password, roleID, address, email));
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if (rs != null) rs.close();
+            if (ptm != null) ptm.close();
+            if (conn != null) conn.close();
+        }
+        return listUser;
     }
 
     public List<UserDTO> getListUser(String search) throws SQLException {
@@ -85,7 +123,10 @@ public class UserDAO {
                 String roleID = rs.getString("roleID");
                 String address = rs.getString("address");
                 String email = rs.getString("email");
-                listUser.add(new UserDTO(userID, fullName, password, roleID, address, email));
+                boolean status = rs.getBoolean("status");
+                if (status){
+                    listUser.add(new UserDTO(userID, fullName, password, roleID, address, email));
+                }
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -174,6 +215,31 @@ public class UserDAO {
                 ptm.setString(4, newUser.getPassword());
                 ptm.setString(5, newUser.getEmail());
                 ptm.setBoolean(6, true);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } finally {
+            if (ptm != null) ptm.close();
+            if (conn != null) conn.close();
+        }
+        return check;
+    }
+    
+    public boolean addUser(UserDTO newUser) throws SQLException, ClassNotFoundException, NamingException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                ptm = conn.prepareStatement(ADD_USER_FULL);
+                ptm.setString(1, newUser.getUserID());
+                ptm.setString(2, newUser.getFullName());
+                ptm.setString(3, newUser.getRoleID());
+                ptm.setString(4, newUser.getPassword());
+                ptm.setString(5, newUser.getEmail());
+                ptm.setString(6, newUser.getAddress());
+                ptm.setString(7, newUser.getAvatar());
+                ptm.setBoolean(8, true);
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
         } finally {
